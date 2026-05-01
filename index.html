@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuxFlix Premium</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b10;
+    color: white;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.logo {
+    color: gold;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+nav a:hover { color: gold; }
+
+/* SEARCH */
+.search-box {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.search-box input {
+    width: 60%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+/* ROWS */
+.row {
+    margin: 40px 20px;
+}
+
+.row h2 {
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.row-posters {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+
+.row-posters::-webkit-scrollbar {
+    display: none;
+}
+
+/* CARD */
+.card {
+    min-width: 180px;
+    background: #1a1a22;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card button {
+    width: 90%;
+    margin: 10px auto;
+    padding: 8px;
+    border: none;
+    background: gold;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.card button:hover {
+    background: #ffdd55;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">LUXFLIX</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Movies</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+<!-- SEARCH -->
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search movies...">
+</div>
+
+<!-- ROW 1 -->
+<div class="row">
+    <h2>Trending Now</h2>
+    <div class="row-posters" id="movieRow">
+
+        <div class="card" data-title="Joker">
+            <img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
+            <button onclick="goToMovie('joker')">Watch</button>
+        </div>
+
+        <div class="card" data-title="Interstellar">
+            <img src="https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg">
+            <button onclick="goToMovie('interstellar')">Watch</button>
+        </div>
+
+        <div class="card" data-title="Batman">
+            <img src="https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg">
+            <button onclick="goToMovie('batman')">Watch</button>
+        </div>
+
+        <div class="card" data-title="Avengers">
+            <img src="https://image.tmdb.org/t/p/w500/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg">
+            <button onclick="goToMovie('avengers')">Watch</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- ROW 2 -->
+<div class="row">
+    <h2>Top Rated</h2>
+    <div class="row-posters">
+
+        <div class="card" data-title="Inception">
+            <img src="https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg">
+            <button onclick="goToMovie('inception')">Watch</button>
+        </div>
+
+        <div class="card" data-title="Titanic">
+            <img src="https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg">
+            <button onclick="goToMovie('titanic')">Watch</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// NAVIGATION TO OTHER PAGE
+function goToMovie(id) {
+    window.location.href = "movie.html?id=" + id;
+}
+
+// SEARCH FILTER
+document.getElementById("searchInput").addEventListener("keyup", function () {
+    let value = this.value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let title = card.getAttribute("data-title").toLowerCase();
+        if (title.includes(value)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
