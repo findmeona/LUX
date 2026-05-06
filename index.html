@@ -1,255 +1,156 @@
-<!-- ===== GALLERY SECTION (DROP-IN REPLACEMENT) ===== -->
-<!-- Replace your existing gallery section in index.html with this -->
-
+<!-- ===== GALLERY SECTION ===== -->
 <section class="gallery-section" id="gallery">
   <div class="container">
-    <div class="section-label reveal-up">Our Work</div>
-    <h2 class="section-title reveal-up delay-1">
-      A Glimpse of <em>Our Creations</em>
-    </h2>
-    <p class="section-sub reveal-up delay-2">
-      Each event is unique. Each decoration, a story. Click any image to explore the full look.
-    </p>
 
-    <!-- FILTER TABS -->
-    <div class="gallery-filters reveal-up delay-2">
+    <h2 class="section-title">Our Creations</h2>
+
+    <!-- FILTER -->
+    <div class="gallery-filters">
       <button class="gf-btn active" data-filter="all">All</button>
       <button class="gf-btn" data-filter="wedding">Wedding</button>
-      <button class="gf-btn" data-filter="baby">Baby Ceremony</button>
-      <button class="gf-btn" data-filter="griha">Griha Pravesh</button>
+      <button class="gf-btn" data-filter="baby">Baby</button>
+      <button class="gf-btn" data-filter="griha">Griha</button>
       <button class="gf-btn" data-filter="cultural">Cultural</button>
     </div>
 
-    <div class="gallery-grid" id="galleryGrid">
+    <!-- GRID -->
+    <div class="gallery-grid">
 
-      <!-- 1 – Chhab Setup -->
-      <div class="gallery-item tall reveal-up" data-category="wedding" data-index="0">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Chhab Setup">
-          <img src="images/chhab.jpg.jpeg"
-               data-src="images/chhab.jpg.jpeg"
-               alt="Traditional Chhab decoration setup in Rajkot"
-               class="lazy"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🌸 Chhab Setup</span>
-            <small>Traditional Decoration</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="wedding">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/chhab.jpg" alt="">
         </div>
       </div>
 
-      <!-- 2 – Shri Fal -->
-      <div class="gallery-item reveal-up delay-1" data-category="cultural" data-index="1">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Shri Fal Decoration">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZTMkr0zCDKn1rAEF1GutUVkxVbkhyyT6T5A&s"
-               alt="Shri Fal decoration setup for Gujarati ceremony"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🌸 Shri Fal Decoration</span>
-            <small>Traditional Setup</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="cultural">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/shrifal.jpg" alt="">
         </div>
       </div>
 
-      <!-- 3 – Vana Rasam -->
-      <div class="gallery-item reveal-up delay-2" data-category="wedding" data-index="2">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Vana Rasam decoration">
-          <img src="images/vana.jpg.jpeg"
-               alt="Vana Rasam ceremony decoration in Gujarat"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🌿 Vana Rasam</span>
-            <small>Gujarati Ritual Setup</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="wedding">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/vana.jpg" alt="">
         </div>
       </div>
 
-      <!-- 4 – Wedding Mandap (wide) -->
-      <div class="gallery-item wide reveal-up delay-2" data-category="wedding" data-index="3">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Wedding Mandap decoration">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx41JlRFOQ4L0XAUUs1GfI4zAMYgu6NbLpSA&s"
-               alt="Grand wedding mandap decoration in Rajkot"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🪷 Wedding Mandap</span>
-            <small>Grand Decoration</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="wedding">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/mandap.jpg" alt="">
         </div>
       </div>
 
-      <!-- 5 – Chhathi -->
-      <div class="gallery-item reveal-up delay-2" data-category="baby" data-index="4">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Chhathi decoration">
-          <img src="images/chhathi.jpg.jpeg"
-               alt="Chhathi baby ceremony decoration setup in Rajkot"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🌙 Chhathi Décor</span>
-            <small>Baby Ceremony</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="baby">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/chhathi.jpg" alt="">
         </div>
       </div>
 
-      <!-- 6 – Lagna Lekhan -->
-      <div class="gallery-item reveal-up delay-3" data-category="wedding" data-index="5">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Lagna Lekhan decoration">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhX_dqgnuXk4dG2qiTppnHaojL6UteIw2tJg&s"
-               alt="Lagna Lekhan ceremony decoration in Gujarat"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>📜 Lagna Lekhan</span>
-            <small>Invitation Ceremony</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="wedding">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/lagna.jpg" alt="">
         </div>
       </div>
 
-      <!-- 7 – Kanku Pagla -->
-      <div class="gallery-item reveal-up delay-3" data-category="griha" data-index="6">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Kanku Pagla decoration">
-          <img src="images/kanku.jpg.jpeg"
-               alt="Kanku Pagla Griha Pravesh decoration in Rajkot"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🪔 Kanku Pagla</span>
-            <small>Griha Pravesh</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="griha">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/kanku.jpg" alt="">
         </div>
       </div>
 
-      <!-- 8 – Chunni Rent -->
-      <div class="gallery-item reveal-up delay-3" data-category="cultural" data-index="7">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Chunni decoration accessories">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS31s-v8TSOyrNlxmoK62TWJDYksJfMDGR5OQ&s"
-               alt="Chunni decoration accessories setup"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🪔 Chunni Rent</span>
-            <small>Décor Accessories</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="cultural">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/chunni.jpg" alt="">
         </div>
       </div>
 
-      <!-- 9 – Welcome Baby -->
-      <div class="gallery-item reveal-up delay-3" data-category="baby" data-index="8">
-        <div class="gallery-box" tabindex="0" role="button" aria-label="View Welcome Baby decoration">
-          <img src="images/welcome.jpg.jpeg"
-               alt="Welcome baby decoration setup in Rajkot"
-               loading="lazy" />
-          <div class="gallery-overlay"></div>
-          <div class="gallery-text">
-            <span>🪔 Welcome Baby</span>
-            <small>Baby Ceremony</small>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6M8 11h6"/>
-            </svg>
-          </div>
+      <div class="gallery-item" data-category="baby">
+        <div class="gallery-box" tabindex="0">
+          <img src="images/welcome.jpg" alt="">
         </div>
       </div>
 
-    </div><!-- /gallery-grid -->
-
-    <div class="gallery-cta reveal-up">
-      📸 See 200+ real event photos on Instagram →
-      <a href="https://instagram.com/rv_creation__18" target="_blank" rel="noopener">@rv_creation__18</a>
-    </div>
-  </div><!-- /container -->
-</section>
-
-
-<!-- ===== GALLERY LIGHTBOX MODAL ===== -->
-<div id="glModal" class="gl-modal" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
-  <div class="gl-backdrop" id="glBackdrop"></div>
-
-  <div class="gl-panel">
-    <!-- Close -->
-    <button class="gl-close" id="glClose" aria-label="Close">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M18 6L6 18M6 6l12 12"/>
-      </svg>
-    </button>
-
-    <!-- Prev / Next -->
-    <button class="gl-nav gl-prev" id="glPrev" aria-label="Previous image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="15,18 9,12 15,6"/>
-      </svg>
-    </button>
-    <button class="gl-nav gl-next" id="glNext" aria-label="Next image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="9,18 15,12 9,6"/>
-      </svg>
-    </button>
-
-    <!-- Main image stage -->
-    <div class="gl-stage">
-      <div class="gl-main-wrap">
-        <img id="glMainImg" src="" alt="" class="gl-main-img" />
-        <div class="gl-loader" id="glLoader">
-          <div class="gl-spinner"></div>
-        </div>
-      </div>
-
-      <!-- Caption -->
-      <div class="gl-caption">
-        <span class="gl-caption-title" id="glCaptionTitle"></span>
-        <span class="gl-caption-sub" id="glCaptionSub"></span>
-        <span class="gl-counter" id="glCounter"></span>
-      </div>
-    </div>
-
-    <!-- Related sub-gallery -->
-    <div class="gl-related" id="glRelated">
-      <p class="gl-related-label">Related Decorations</p>
-      <div class="gl-related-strip" id="glRelatedStrip"></div>
     </div>
   </div>
+</section>
+
+<!-- ===== MODAL ===== -->
+<div id="glModal" class="gl-modal" hidden>
+  <div class="gl-backdrop"></div>
+
+  <div class="gl-content">
+    <button id="closeBtn">✕</button>
+    <button id="prevBtn">◀</button>
+    <img id="modalImg">
+    <button id="nextBtn">▶</button>
+  </div>
 </div>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+const items = document.querySelectorAll('.gallery-item');
+const buttons = document.querySelectorAll('.gf-btn');
+const modal = document.getElementById('glModal');
+const modalImg = document.getElementById('modalImg');
+
+let currentIndex = 0;
+let images = [];
+
+document.querySelectorAll('.gallery-box img').forEach((img, i) => {
+  images.push(img.src);
+
+  img.parentElement.addEventListener('click', () => {
+    currentIndex = i;
+    openModal();
+  });
+
+  img.parentElement.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      currentIndex = i;
+      openModal();
+    }
+  });
+});
+
+function openModal() {
+  modal.hidden = false;
+  modalImg.src = images[currentIndex];
+}
+
+function closeModal() {
+  modal.hidden = true;
+}
+
+function nextImg() {
+  currentIndex = (currentIndex + 1) % images.length;
+  modalImg.src = images[currentIndex];
+}
+
+function prevImg() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  modalImg.src = images[currentIndex];
+}
+
+document.getElementById('closeBtn').onclick = closeModal;
+document.getElementById('nextBtn').onclick = nextImg;
+document.getElementById('prevBtn').onclick = prevImg;
+document.querySelector('.gl-backdrop').onclick = closeModal;
+
+// FILTER
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    items.forEach(item => {
+      if (filter === 'all' || item.dataset.category === filter) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
