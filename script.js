@@ -1,11 +1,11 @@
 const items = document.querySelectorAll('.item');
 const buttons = document.querySelectorAll('.btn');
 
-let filteredImages = [];
-let currentIndex = 0;
-
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
+
+let currentImages = [];
+let currentIndex = 0;
 
 // ===== FILTER =====
 buttons.forEach(btn => {
@@ -15,12 +15,9 @@ buttons.forEach(btn => {
 
     const filter = btn.dataset.filter;
 
-    filteredImages = [];
-
     items.forEach(item => {
       if (filter === 'all' || item.dataset.category === filter) {
         item.style.display = 'block';
-        filteredImages.push(item.querySelector('img').src);
       } else {
         item.style.display = 'none';
       }
@@ -34,39 +31,45 @@ buttons.forEach(btn => {
   };
 });
 
-// INIT
-filteredImages = Array.from(items).map(i => i.querySelector('img').src);
-
-// ===== OPEN MODAL =====
-items.forEach((item, i) => {
+// ===== OPEN PRODUCT GALLERY =====
+items.forEach(item => {
   item.onclick = () => {
-    currentIndex = i;
-    modal.hidden = false;
-    modalImg.src = filteredImages[currentIndex];
+    currentImages = item.dataset.images.split(',');
+    currentIndex = 0;
 
-    gsap.from(".glass", { scale: 0.8, opacity: 0, duration: 0.4 });
+    modal.hidden = false;
+    modalImg.src = currentImages[currentIndex];
+
+    gsap.from(".glass", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 0.4
+    });
   };
 });
 
-// ===== NAVIGATION =====
+// ===== IMAGE SWITCH =====
 function showImage(index) {
-  currentIndex = (index + filteredImages.length) % filteredImages.length;
+  currentIndex = (index + currentImages.length) % currentImages.length;
 
   gsap.to("#modalImg", {
     opacity: 0,
     duration: 0.2,
     onComplete: () => {
-      modalImg.src = filteredImages[currentIndex];
+      modalImg.src = currentImages[currentIndex];
       gsap.to("#modalImg", { opacity: 1 });
     }
   });
 }
 
+// NAV
 document.getElementById('next').onclick = () => showImage(currentIndex + 1);
 document.getElementById('prev').onclick = () => showImage(currentIndex - 1);
 document.getElementById('close').onclick = () => modal.hidden = true;
+document.querySelector('.backdrop').onclick = () => modal.hidden = true;
 
-// ===== SWIPE (MOBILE + MOUSE) =====
+
+// ===== SWIPE =====
 let startX = 0;
 
 modal.addEventListener('touchstart', e => {
