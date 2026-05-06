@@ -4,6 +4,12 @@ body {
   background: linear-gradient(135deg,#1a1a1a,#2a2a2a);
   color: white;
 }
+/* smoother modal image */
+#modalImg {
+  max-width: 80vw;
+  max-height: 70vh;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
 
 /* TITLE */
 .title {
