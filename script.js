@@ -1,66 +1,52 @@
 const items = document.querySelectorAll('.item');
-const buttons = document.querySelectorAll('.btn');
-
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modalImg');
 
 let currentImages = [];
 let currentIndex = 0;
 
-// ===== FILTER =====
-buttons.forEach(btn => {
-  btn.onclick = () => {
-    buttons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+// ===== OPEN MINI GALLERY =====
+document.querySelectorAll('.item').forEach(item => {
+  item.addEventListener('click', (e) => {
 
-    const filter = btn.dataset.filter;
+    // always get parent item (fix click issue)
+    const parent = e.currentTarget;
 
-    items.forEach(item => {
-      if (filter === 'all' || item.dataset.category === filter) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
+    const imagesAttr = parent.getAttribute('data-images');
 
-    gsap.from(".item", {
-      opacity: 0,
-      y: 40,
-      stagger: 0.1
-    });
-  };
-});
+    if (!imagesAttr) {
+      console.error("No data-images found");
+      return;
+    }
 
-// ===== OPEN PRODUCT GALLERY =====
-items.forEach(item => {
-  item.onclick = () => {
-    currentImages = item.dataset.images.split(',');
+    // split + clean
+    currentImages = imagesAttr.split(',').map(img => img.trim());
+
     currentIndex = 0;
+
+    // DEBUG (remove later)
+    console.log("Opened images:", currentImages);
 
     modal.hidden = false;
     modalImg.src = currentImages[currentIndex];
-
-    gsap.from(".glass", {
-      scale: 0.8,
-      opacity: 0,
-      duration: 0.4
-    });
-  };
+  });
 });
 
-// ===== IMAGE SWITCH =====
+
+// ===== CHANGE IMAGE =====
 function showImage(index) {
+  if (!currentImages.length) return;
+
   currentIndex = (index + currentImages.length) % currentImages.length;
 
-  gsap.to("#modalImg", {
-    opacity: 0,
-    duration: 0.2,
-    onComplete: () => {
-      modalImg.src = currentImages[currentIndex];
-      gsap.to("#modalImg", { opacity: 1 });
-    }
-  });
+  modalImg.style.opacity = 0;
+
+  setTimeout(() => {
+    modalImg.src = currentImages[currentIndex];
+    modalImg.style.opacity = 1;
+  }, 200);
 }
+
 
 // NAV
 document.getElementById('next').onclick = () => showImage(currentIndex + 1);
@@ -78,16 +64,6 @@ modal.addEventListener('touchstart', e => {
 
 modal.addEventListener('touchend', e => {
   let endX = e.changedTouches[0].clientX;
-
-  if (startX - endX > 50) showImage(currentIndex + 1);
-  if (endX - startX > 50) showImage(currentIndex - 1);
-});
-
-// MOUSE DRAG
-modal.addEventListener('mousedown', e => startX = e.clientX);
-
-modal.addEventListener('mouseup', e => {
-  let endX = e.clientX;
 
   if (startX - endX > 50) showImage(currentIndex + 1);
   if (endX - startX > 50) showImage(currentIndex - 1);
