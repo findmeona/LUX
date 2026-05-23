@@ -1,70 +1,45 @@
-const items = document.querySelectorAll('.item');
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
+// Loader
 
-let currentImages = [];
-let currentIndex = 0;
+window.addEventListener("load", () => {
+  document.querySelector(".loader").style.display = "none";
+});
 
-// ===== OPEN MINI GALLERY =====
-document.querySelectorAll('.item').forEach(item => {
-  item.addEventListener('click', (e) => {
+// AOS Init
 
-    // always get parent item (fix click issue)
-    const parent = e.currentTarget;
+AOS.init({
+  duration: 1200,
+  once: true
+});
 
-    const imagesAttr = parent.getAttribute('data-images');
+// Navbar Scroll Effect
 
-    if (!imagesAttr) {
-      console.error("No data-images found");
-      return;
-    }
+window.addEventListener("scroll", () => {
 
-    // split + clean
-    currentImages = imagesAttr.split(',').map(img => img.trim());
+  const header = document.querySelector("header");
 
-    currentIndex = 0;
+  if(window.scrollY > 50){
+    header.style.background = "rgba(0,0,0,0.85)";
+  } else {
+    header.style.background = "rgba(0,0,0,0.4)";
+  }
 
-    // DEBUG (remove later)
-    console.log("Opened images:", currentImages);
+});
 
-    modal.hidden = false;
-    modalImg.src = currentImages[currentIndex];
+// Mouse Move Animation
+
+document.addEventListener("mousemove", (e) => {
+
+  const cards = document.querySelectorAll(".floating-card");
+
+  cards.forEach((card, index) => {
+
+    let speed = (index + 1) * 0.01;
+
+    let x = (window.innerWidth - e.pageX * speed) / 100;
+    let y = (window.innerHeight - e.pageY * speed) / 100;
+
+    card.style.transform = `translate(${x}px, ${y}px)`;
+
   });
-});
 
-
-// ===== CHANGE IMAGE =====
-function showImage(index) {
-  if (!currentImages.length) return;
-
-  currentIndex = (index + currentImages.length) % currentImages.length;
-
-  modalImg.style.opacity = 0;
-
-  setTimeout(() => {
-    modalImg.src = currentImages[currentIndex];
-    modalImg.style.opacity = 1;
-  }, 200);
-}
-
-
-// NAV
-document.getElementById('next').onclick = () => showImage(currentIndex + 1);
-document.getElementById('prev').onclick = () => showImage(currentIndex - 1);
-document.getElementById('close').onclick = () => modal.hidden = true;
-document.querySelector('.backdrop').onclick = () => modal.hidden = true;
-
-
-// ===== SWIPE =====
-let startX = 0;
-
-modal.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-});
-
-modal.addEventListener('touchend', e => {
-  let endX = e.changedTouches[0].clientX;
-
-  if (startX - endX > 50) showImage(currentIndex + 1);
-  if (endX - startX > 50) showImage(currentIndex - 1);
 });
