@@ -1,241 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Love Story</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luxury Creative Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* RESET */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins;
-}
-
-body{
-background:#05060f;
-color:white;
-overflow-x:hidden;
-}
-
-/* FLOATING HEARTS */
-.hearts{
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-overflow:hidden;
-z-index:0;
-}
-
-.heart{
-position:absolute;
-color:#ff4d6d;
-font-size:18px;
-animation:float 8s linear infinite;
-opacity:0.5;
-}
-
-@keyframes float{
-0%{transform:translateY(100vh) scale(0);}
-100%{transform:translateY(-10vh) scale(1);}
-}
-
-/* HERO */
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-position:relative;
-z-index:2;
-background:radial-gradient(circle at top,#1a0b2e,#05060f);
-}
-
-.hero h1{
-font-size:55px;
-margin-bottom:10px;
-}
-
-.hero p{
-color:#ccc;
-}
-
-/* SECTIONS */
-section{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:50px;
-position:relative;
-z-index:2;
-}
-
-.card{
-max-width:700px;
-padding:40px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-backdrop-filter:blur(15px);
-border-radius:20px;
-text-align:center;
-opacity:0;
-transform:translateY(60px) scale(0.9);
-transition:1s ease;
-}
-
-.card.show{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-
-.card h2{
-font-size:35px;
-margin-bottom:10px;
-color:#ff4d6d;
-}
-
-/* TIMELINE DOTS */
-.line{
-position:fixed;
-left:50%;
-top:0;
-width:2px;
-height:100%;
-background:rgba(255,255,255,0.1);
-z-index:1;
-}
-
-.dot{
-position:fixed;
-left:50%;
-width:14px;
-height:14px;
-background:#ff4d6d;
-border-radius:50%;
-transform:translateX(-50%);
-z-index:3;
-transition:0.3s;
-}
-
-</style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<!-- HEARTS -->
-<div class="hearts" id="hearts"></div>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">LuxuryStudio</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<div class="line"></div>
-<div class="dot" id="dot"></div>
+<!-- HERO SECTION -->
+<section id="home" class="hero">
 
-<!-- HERO -->
-<div class="hero">
-<h1>Our Love Story</h1>
-<p>A journey written by heart ❤️</p>
-</div>
+  <video autoplay muted loop class="bg-video">
+    <source src="https://cdn.coverr.co/videos/coverr-working-in-a-modern-office-1579/1080p.mp4" type="video/mp4">
+  </video>
 
-<!-- STORY SECTIONS -->
-<section>
-<div class="card">
-<h2>First Meet</h2>
-<p>We met unexpectedly, but it felt like destiny already knew us.</p>
-</div>
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="glow">Premium Digital Experiences</h1>
+    <p>We design websites, wedding invitations & festive cards with luxury aesthetics.</p>
+    <a href="#contact" class="btn">Get Started</a>
+  </div>
 </section>
 
-<section>
-<div class="card">
-<h2>First Conversation</h2>
-<p>What started as a simple talk turned into hours of connection.</p>
-</div>
+<!-- SERVICES -->
+<section id="services" class="section">
+  <h2 class="title">Our Services</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Website Design</h3>
+      <p>Modern, responsive & high converting business websites.</p>
+    </div>
+
+    <div class="card">
+      <h3>Wedding Invitations</h3>
+      <p>Elegant digital wedding cards with animations & video invites.</p>
+    </div>
+
+    <div class="card">
+      <h3>Festive Cards</h3>
+      <p>Diwali, New Year & custom festival greeting designs.</p>
+    </div>
+
+  </div>
 </section>
 
-<section>
-<div class="card">
-<h2>First Date</h2>
-<p>A magical evening where everything felt perfectly aligned.</p>
-</div>
+<!-- WORK -->
+<section id="work" class="section dark">
+  <h2 class="title">Our Work</h2>
+
+  <div class="work-grid">
+    <div class="work-item"></div>
+    <div class="work-item"></div>
+    <div class="work-item"></div>
+    <div class="work-item"></div>
+  </div>
 </section>
 
-<section>
-<div class="card">
-<h2>Engagement</h2>
-<p>A promise to stay together forever, no matter what.</p>
-</div>
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2 class="title">Contact Us</h2>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Email Address" required />
+    <textarea placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
 </section>
 
-<section>
-<div class="card">
-<h2>Forever Begins</h2>
-<p>Now our journey continues into a beautiful lifetime together ❤️</p>
-</div>
-</section>
+<footer>
+  <p>© 2026 LuxuryStudio. All Rights Reserved.</p>
+</footer>
 
-<script>
-
-/* FLOATING HEARTS */
-const hearts=document.getElementById("hearts");
-
-function createHeart(){
-
-const heart=document.createElement("div");
-
-heart.classList.add("heart");
-
-heart.innerHTML="❤";
-
-heart.style.left=Math.random()*100+"%";
-
-heart.style.animationDuration=(4+Math.random()*5)+"s";
-
-hearts.appendChild(heart);
-
-setTimeout(()=>heart.remove(),8000);
-
-}
-
-setInterval(createHeart,300);
-
-/* SCROLL ANIMATION */
-const cards=document.querySelectorAll(".card");
-
-window.addEventListener("scroll",()=>{
-
-cards.forEach(card=>{
-
-const rect=card.getBoundingClientRect();
-
-if(rect.top < window.innerHeight - 100){
-
-card.classList.add("show");
-
-}
-
-});
-
-});
-
-/* MOVING DOT */
-const dot=document.getElementById("dot");
-
-window.addEventListener("scroll",()=>{
-
-let scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-
-dot.style.top = scrollPercent * window.innerHeight + "px";
-
-});
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
