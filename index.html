@@ -4,13 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Luxury Creative Studio</title>
-
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
   <div class="logo">LuxuryStudio</div>
   <nav>
@@ -21,7 +19,7 @@
   </nav>
 </header>
 
-<!-- HERO SECTION -->
+<!-- HERO -->
 <section id="home" class="hero">
 
   <video autoplay muted loop class="bg-video">
@@ -32,8 +30,18 @@
 
   <div class="hero-content">
     <h1 class="glow">Premium Digital Experiences</h1>
-    <p>We design websites, wedding invitations & festive cards with luxury aesthetics.</p>
-    <a href="#contact" class="btn">Get Started</a>
+    <p>Websites • Wedding Invitations • Festive Cards</p>
+
+    <div class="hero-buttons">
+      <a href="#contact" class="btn">Get Started</a>
+
+      <!-- WhatsApp CTA -->
+      <a class="btn whatsapp"
+         href="https://wa.me/919876543210?text=Hi%20I%20want%20a%20premium%20website%20/%20invitation%20design"
+         target="_blank">
+        Order on WhatsApp
+      </a>
+    </div>
   </div>
 </section>
 
@@ -42,26 +50,23 @@
   <h2 class="title">Our Services</h2>
 
   <div class="grid">
-
     <div class="card">
       <h3>Website Design</h3>
-      <p>Modern, responsive & high converting business websites.</p>
+      <p>High converting luxury business websites.</p>
     </div>
 
     <div class="card">
       <h3>Wedding Invitations</h3>
-      <p>Elegant digital wedding cards with animations & video invites.</p>
+      <p>Animated premium digital wedding cards.</p>
     </div>
 
     <div class="card">
       <h3>Festive Cards</h3>
-      <p>Diwali, New Year & custom festival greeting designs.</p>
+      <p>Elegant Diwali, New Year & custom designs.</p>
     </div>
-
   </div>
 </section>
 
-<!-- WORK -->
 <section id="work" class="section dark">
   <h2 class="title">Our Work</h2>
 
@@ -73,7 +78,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section">
   <h2 class="title">Contact Us</h2>
 
@@ -88,6 +92,13 @@
 <footer>
   <p>© 2026 LuxuryStudio. All Rights Reserved.</p>
 </footer>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/919876543210?text=Hi%20I%20am%20interested%20in%20your%20services"
+   class="float-whatsapp"
+   target="_blank">
+  💬
+</a>
 
 <script src="script.js"></script>
 </body>
