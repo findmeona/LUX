@@ -1,102 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Luxury Invitations Studio</title>
+
+  <title>LuxeCards Premium Studio</title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
 
-  <!-- Icons -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  <!-- AOS Animation -->
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
   <!-- Loader -->
-  <div id="loader">
+
+  <div class="loader">
+
     <div class="loader-ring"></div>
+
   </div>
 
   <!-- Navbar -->
+
   <header class="navbar">
-    <div class="logo">LUXE<span>CARDS</span></div>
+
+    <div class="logo">
+      LUXE<span>CARDS</span>
+    </div>
 
     <nav>
+
       <ul class="nav-links">
+
         <li><a href="#home">Home</a></li>
+
         <li><a href="#services">Services</a></li>
+
         <li><a href="#portfolio">Portfolio</a></li>
+
         <li><a href="#about">About</a></li>
+
         <li><a href="#contact">Contact</a></li>
+
       </ul>
+
     </nav>
 
     <div class="menu-btn">
       <i class="fa-solid fa-bars"></i>
     </div>
+
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
+
   <section class="hero" id="home">
 
     <video autoplay muted loop playsinline class="hero-video">
-      <source src="assets/hero-video.mp4" type="video/mp4">
+
+      <source src="assets/videos/hero-video.mp4" type="video/mp4">
+
     </video>
 
     <div class="overlay"></div>
 
     <div class="hero-content" data-aos="zoom-in">
-      <h1>Luxury Wedding & Festival Invitations</h1>
+
+      <h1>
+        Luxury Wedding & Invitation Experiences
+      </h1>
 
       <p>
-        Premium Invitation Design Studio for Weddings,
-        Business Websites, Festive Cards & Digital Experiences
+        Premium wedding websites, digital invitation cards,
+        festive greetings and cinematic business experiences.
       </p>
 
       <div class="hero-buttons">
-        <a href="#portfolio" class="btn-primary">Explore Work</a>
-        <a href="#contact" class="btn-secondary">Contact Us</a>
+
+        <a href="#portfolio" class="btn-primary">
+          Explore Work
+        </a>
+
+        <a href="#contact" class="btn-secondary">
+          Contact Us
+        </a>
+
       </div>
+
     </div>
 
   </section>
 
   <!-- Services -->
+
   <section class="services section" id="services">
 
     <div class="section-title" data-aos="fade-up">
+
       <h2>Premium Services</h2>
-      <p>Modern Luxury Design Solutions</p>
+
+      <p>Luxury Digital Experiences</p>
+
     </div>
 
     <div class="service-grid">
 
       <div class="service-card glass" data-aos="fade-up">
+
         <i class="fa-solid fa-heart"></i>
+
         <h3>Wedding Invitations</h3>
-        <p>Royal digital invitation cards with cinematic animations.</p>
+
+        <p>
+          Elegant animated wedding invitation websites
+          with luxury design.
+        </p>
+
       </div>
 
       <div class="service-card glass" data-aos="fade-up" data-aos-delay="100">
+
         <i class="fa-solid fa-gift"></i>
-        <h3>Festive Cards</h3>
-        <p>Luxury Diwali, Eid, Christmas & event greeting experiences.</p>
+
+        <h3>Festival Greetings</h3>
+
+        <p>
+          Diwali, Eid, Christmas and festive digital cards.
+        </p>
+
       </div>
 
       <div class="service-card glass" data-aos="fade-up" data-aos-delay="200">
+
         <i class="fa-solid fa-laptop-code"></i>
+
         <h3>Business Websites</h3>
-        <p>Modern responsive websites with animations & premium UI.</p>
+
+        <p>
+          Professional websites with modern animations
+          and premium UI.
+        </p>
+
       </div>
 
     </div>
@@ -104,6 +165,123 @@
   </section>
 
   <!-- Portfolio -->
+
   <section class="portfolio section" id="portfolio">
 
-    <div class="section
+    <div class="section-title" data-aos="fade-up">
+
+      <h2>Our Portfolio</h2>
+
+      <p>Creative Premium Showcase</p>
+
+    </div>
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card" data-aos="zoom-in">
+
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop">
+
+      </div>
+
+      <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="100">
+
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1200&auto=format&fit=crop">
+
+      </div>
+
+      <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="200">
+
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1200&auto=format&fit=crop">
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- About -->
+
+  <section class="about section" id="about">
+
+    <div class="about-container">
+
+      <div class="about-image" data-aos="fade-right">
+
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop">
+
+      </div>
+
+      <div class="about-content glass" data-aos="fade-left">
+
+        <h2>10+ Years Premium Experience</h2>
+
+        <p>
+          We build cinematic websites with smooth animations,
+          glassmorphism, 3D effects and premium UI/UX.
+        </p>
+
+        <a href="#contact" class="btn-primary">
+          Work With Us
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Contact -->
+
+  <section class="contact section" id="contact">
+
+    <div class="section-title" data-aos="fade-up">
+
+      <h2>Contact Us</h2>
+
+      <p>Let's Build Something Beautiful</p>
+
+    </div>
+
+    <form class="contact-form glass" data-aos="fade-up">
+
+      <input type="text" placeholder="Your Name">
+
+      <input type="email" placeholder="Your Email">
+
+      <textarea rows="6" placeholder="Project Details"></textarea>
+
+      <button class="btn-primary">
+        Send Message
+      </button>
+
+    </form>
+
+  </section>
+
+  <!-- Footer -->
+
+  <footer>
+
+    <h3>LUXECARDS</h3>
+
+    <p>Premium Invitation & Website Studio</p>
+
+  </footer>
+
+  <!-- JS -->
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+  <script src="js/script.js"></script>
+  <script src="js/gsap.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/smooth-scroll.js"></script>
+
+</body>
+
+</html>
