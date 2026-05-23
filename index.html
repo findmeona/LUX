@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D Wedding Invitation Generator</title>
+<title>Our Love Story</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* ===== BASE ===== */
+/* RESET */
 *{
 margin:0;
 padding:0;
@@ -18,134 +18,113 @@ font-family:Poppins;
 }
 
 body{
-background:radial-gradient(circle at top,#0b0f2a,#05060f);
+background:#05060f;
 color:white;
 overflow-x:hidden;
 }
 
-/* ===== LAYOUT ===== */
-.container{
+/* FLOATING HEARTS */
+.hearts{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+overflow:hidden;
+z-index:0;
+}
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:18px;
+animation:float 8s linear infinite;
+opacity:0.5;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(0);}
+100%{transform:translateY(-10vh) scale(1);}
+}
+
+/* HERO */
+.hero{
+height:100vh;
 display:flex;
-flex-wrap:wrap;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+z-index:2;
+background:radial-gradient(circle at top,#1a0b2e,#05060f);
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#ccc;
+}
+
+/* SECTIONS */
+section{
 min-height:100vh;
-padding:40px;
-gap:40px;
-align-items:center;
-justify-content:center;
-}
-
-/* ===== FORM ===== */
-.form-box{
-width:350px;
-padding:25px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-backdrop-filter:blur(20px);
-border-radius:20px;
-}
-
-.form-box h2{
-margin-bottom:20px;
-}
-
-input,textarea{
-width:100%;
-padding:12px;
-margin-bottom:12px;
-border:none;
-border-radius:10px;
-outline:none;
-background:rgba(255,255,255,0.08);
-color:white;
-}
-
-button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:50px;
-background:linear-gradient(45deg,#ff4d6d,#ffb703);
-color:white;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.05);
-}
-
-/* ===== 3D SCENE ===== */
-.scene{
-width:400px;
-height:500px;
-perspective:1000px;
 display:flex;
 align-items:center;
 justify-content:center;
+padding:50px;
+position:relative;
+z-index:2;
 }
 
 .card{
-width:300px;
-height:400px;
-transform-style:preserve-3d;
-transition:transform 0.6s;
-position:relative;
-}
-
-.card:hover{
-transform:rotateY(25deg) rotateX(10deg);
-}
-
-/* FRONT */
-.front{
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(145deg,#ff4d6d,#ffb703);
+max-width:700px;
+padding:40px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
 border-radius:20px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-backface-visibility:hidden;
-box-shadow:0 20px 60px rgba(255,77,109,0.4);
+text-align:center;
+opacity:0;
+transform:translateY(60px) scale(0.9);
+transition:1s ease;
 }
 
-.front h1{
-font-size:28px;
+.card.show{
+opacity:1;
+transform:translateY(0) scale(1);
 }
 
-.front p{
-margin-top:10px;
+.card h2{
+font-size:35px;
+margin-bottom:10px;
+color:#ff4d6d;
 }
 
-/* BACK */
-.back{
-position:absolute;
-width:100%;
+/* TIMELINE DOTS */
+.line{
+position:fixed;
+left:50%;
+top:0;
+width:2px;
 height:100%;
-background:#0d0f1f;
-border-radius:20px;
-transform:rotateY(180deg);
-backface-visibility:hidden;
-padding:20px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-gap:10px;
+background:rgba(255,255,255,0.1);
+z-index:1;
 }
 
-.tag{
-padding:8px;
-background:rgba(255,255,255,0.08);
-border-radius:10px;
-}
-
-/* BUTTON */
-.download{
-margin-top:10px;
-background:#00d4ff;
+.dot{
+position:fixed;
+left:50%;
+width:14px;
+height:14px;
+background:#ff4d6d;
+border-radius:50%;
+transform:translateX(-50%);
+z-index:3;
+transition:0.3s;
 }
 
 </style>
@@ -153,86 +132,106 @@ background:#00d4ff;
 
 <body>
 
-<div class="container">
+<!-- HEARTS -->
+<div class="hearts" id="hearts"></div>
 
-<!-- FORM -->
-<div class="form-box">
-<h2>Wedding Invitation</h2>
+<div class="line"></div>
+<div class="dot" id="dot"></div>
 
-<input id="groom" placeholder="Groom Name">
-<input id="bride" placeholder="Bride Name">
-<input id="date" placeholder="Wedding Date">
-<textarea id="venue" placeholder="Venue"></textarea>
-
-<button onclick="updateCard()">Generate Invitation</button>
-<button class="download" onclick="downloadCard()">Download PDF</button>
+<!-- HERO -->
+<div class="hero">
+<h1>Our Love Story</h1>
+<p>A journey written by heart ❤️</p>
 </div>
 
-<!-- 3D CARD -->
-<div class="scene">
-
-<div class="card" id="card">
-
-<div class="front">
-<h1 id="title">Wedding Invitation</h1>
-<p>Tap to see details</p>
+<!-- STORY SECTIONS -->
+<section>
+<div class="card">
+<h2>First Meet</h2>
+<p>We met unexpectedly, but it felt like destiny already knew us.</p>
 </div>
+</section>
 
-<div class="back">
-
-<div class="tag" id="names">Couple Name</div>
-<div class="tag" id="dateOut">Date</div>
-<div class="tag" id="venueOut">Venue</div>
-
+<section>
+<div class="card">
+<h2>First Conversation</h2>
+<p>What started as a simple talk turned into hours of connection.</p>
 </div>
+</section>
 
+<section>
+<div class="card">
+<h2>First Date</h2>
+<p>A magical evening where everything felt perfectly aligned.</p>
 </div>
+</section>
 
+<section>
+<div class="card">
+<h2>Engagement</h2>
+<p>A promise to stay together forever, no matter what.</p>
 </div>
+</section>
 
+<section>
+<div class="card">
+<h2>Forever Begins</h2>
+<p>Now our journey continues into a beautiful lifetime together ❤️</p>
 </div>
-
-<!-- HTML2PDF LIB -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</section>
 
 <script>
 
-/* UPDATE CARD */
-function updateCard(){
+/* FLOATING HEARTS */
+const hearts=document.getElementById("hearts");
 
-document.getElementById("names").innerText =
-document.getElementById("groom").value +
-" ❤️ " +
-document.getElementById("bride").value;
+function createHeart(){
 
-document.getElementById("dateOut").innerText =
-"Date: " + document.getElementById("date").value;
+const heart=document.createElement("div");
 
-document.getElementById("venueOut").innerText =
-"Venue: " + document.getElementById("venue").value;
+heart.classList.add("heart");
 
-}
+heart.innerHTML="❤";
 
-/* DOWNLOAD PDF */
-function downloadCard(){
+heart.style.left=Math.random()*100+"%";
 
-const element = document.getElementById("card");
+heart.style.animationDuration=(4+Math.random()*5)+"s";
 
-html2pdf()
-.from(element)
-.save("wedding-invitation.pdf");
+hearts.appendChild(heart);
+
+setTimeout(()=>heart.remove(),8000);
 
 }
 
-/* AUTO 3D FLOAT */
-let card=document.getElementById("card");
+setInterval(createHeart,300);
 
-document.addEventListener("mousemove",(e)=>{
+/* SCROLL ANIMATION */
+const cards=document.querySelectorAll(".card");
 
-let x=(window.innerWidth/2 - e.clientX)/25;
-let y=(window.innerHeight/2 - e.clientY)/25;
+window.addEventListener("scroll",()=>{
 
-card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+cards.forEach(card=>{
+
+const rect=card.getBoundingClientRect();
+
+if(rect.top < window.innerHeight - 100){
+
+card.classList.add("show");
+
+}
+
+});
+
+});
+
+/* MOVING DOT */
+const dot=document.getElementById("dot");
+
+window.addEventListener("scroll",()=>{
+
+let scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+
+dot.style.top = scrollPercent * window.innerHeight + "px";
 
 });
 
