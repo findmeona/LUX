@@ -1,22 +1,23 @@
-window.addEventListener("load",()=>{
+// Smooth scroll enhancement + animations trigger
 
-  document.querySelector(".loader").style.display="none";
+window.addEventListener("scroll", () => {
+  const cards = document.querySelectorAll(".card");
 
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      card.style.opacity = 1;
+      card.style.transform = "translateY(0)";
+    } else {
+      card.style.opacity = 0;
+      card.style.transform = "translateY(50px)";
+    }
+  });
 });
 
-const menuBtn=document.querySelector(".menu-btn");
-
-const navLinks=document.querySelector(".nav-links");
-
-menuBtn.addEventListener("click",()=>{
-
-  navLinks.classList.toggle("active");
-
-});
-
-AOS.init({
-
-  duration:1200,
-  once:true
-
+// initial animation setup
+document.querySelectorAll(".card").forEach(card => {
+  card.style.opacity = 0;
+  card.style.transition = "0.6s ease";
+  card.style.transform = "translateY(50px)";
 });
