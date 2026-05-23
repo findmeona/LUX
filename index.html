@@ -1,87 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Gallery</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Royal Invite Studio</title>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet"
+  href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<section class="gallery">
-  <h2 class="title">Our Creations</h2>
-
-  <!-- FILTER -->
-  <div class="filters">
-    <button class="btn active" data-filter="all">All</button>
-    <button class="btn" data-filter="wedding">Wedding</button>
-    <button class="btn" data-filter="baby">Baby</button>
-    <button class="btn" data-filter="griha">Griha</button>
+  <!-- Loader -->
+  <div class="loader">
+    <div class="ring"></div>
   </div>
 
-  <!-- GRID -->
-  <div class="grid">
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        Royal<span>Invite</span>
+      </div>
 
-    <!-- 1 -->
-   <div class="item"
-     data-images="https://picsum.photos/500/300?1,https://picsum.photos/500/300?11,https://picsum.photos/500/300?21">
-  <img src="https://picsum.photos/400/300?1">
-</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-    <!-- 2 -->
-    <div class="item" data-category="baby"
-         data-images="https://picsum.photos/500/300?2,https://picsum.photos/500/300?12">
-      <img src="https://picsum.photos/400/300?2">
+      <a href="#contact" class="btn-nav">Get Started</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content" data-aos="fade-up">
+
+      <h1>
+        Premium Digital <br>
+        Invitation & Website Studio
+      </h1>
+
+      <p>
+        Wedding Invitations, Festival Cards, Business Websites,
+        Luxury Digital Experiences & Creative Designs.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#" class="primary-btn">View Portfolio</a>
+        <a href="#" class="secondary-btn">Book Now</a>
+      </div>
+
     </div>
 
-    <!-- 3 -->
-    <div class="item" data-category="griha"
-         data-images="https://picsum.photos/500/300?3,https://picsum.photos/500/300?13">
-      <img src="https://picsum.photos/400/300?3">
+    <div class="floating-card card1"></div>
+    <div class="floating-card card2"></div>
+
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2>Our Services</h2>
+      <p>Luxury designs crafted for modern celebrations</p>
     </div>
 
-    <!-- 4 -->
-    <div class="item" data-category="wedding"
-         data-images="https://picsum.photos/500/300?4,https://picsum.photos/500/300?14">
-      <img src="https://picsum.photos/400/300?4">
+    <div class="service-container">
+
+      <div class="service-box" data-aos="zoom-in">
+        <i class="fa-solid fa-ring"></i>
+        <h3>Wedding Invitations</h3>
+        <p>
+          Elegant animated digital wedding cards with music,
+          countdowns and RSVP systems.
+        </p>
+      </div>
+
+      <div class="service-box" data-aos="zoom-in" data-aos-delay="150">
+        <i class="fa-solid fa-gift"></i>
+        <h3>Festival Cards</h3>
+        <p>
+          Premium festive greetings for Diwali,
+          Eid, Christmas & all celebrations.
+        </p>
+      </div>
+
+      <div class="service-box" data-aos="zoom-in" data-aos-delay="300">
+        <i class="fa-solid fa-globe"></i>
+        <h3>Business Websites</h3>
+        <p>
+          Fast, responsive and premium business websites
+          with smooth modern animations.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2>Featured Designs</h2>
+      <p>Luxury UI crafted with premium animations</p>
     </div>
 
-    <!-- 5 -->
-    <div class="item" data-category="baby"
-         data-images="https://picsum.photos/500/300?5,https://picsum.photos/500/300?15">
-      <img src="https://picsum.photos/400/300?5">
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card" data-aos="fade-up">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="portfolio-content">
+          <h3>Royal Wedding Invite</h3>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="150">
+        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="portfolio-content">
+          <h3>Luxury Festival Card</h3>
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="portfolio-content">
+          <h3>Modern Business Website</h3>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+
+    <div class="about-image" data-aos="fade-right">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="">
     </div>
 
-    <!-- 6 -->
-    <div class="item" data-category="griha"
-         data-images="https://picsum.photos/500/300?6,https://picsum.photos/500/300?16">
-      <img src="https://picsum.photos/400/300?6">
+    <div class="about-content" data-aos="fade-left">
+
+      <h2>We Build Luxury Experiences</h2>
+
+      <p>
+        We create premium invitation websites and
+        digital experiences with modern animations,
+        cinematic visuals and elegant user experiences.
+      </p>
+
+      <div class="stats">
+
+        <div class="stat-box">
+          <h3>250+</h3>
+          <span>Projects</span>
+        </div>
+
+        <div class="stat-box">
+          <h3>10+</h3>
+          <span>Years Experience</span>
+        </div>
+
+        <div class="stat-box">
+          <h3>100%</h3>
+          <span>Client Satisfaction</span>
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- 7 -->
-    <div class="item" data-category="wedding"
-         data-images="https://picsum.photos/500/300?7,https://picsum.photos/500/300?17">
-      <img src="https://picsum.photos/400/300?7">
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+
+    <div class="section-title" data-aos="fade-up">
+      <h2>Contact Us</h2>
+      <p>Start your premium project today</p>
     </div>
 
-  </div>
-</section>
+    <form class="contact-form" data-aos="fade-up">
 
-<!-- MODAL -->
-<div class="modal" id="modal" hidden>
-  <div class="backdrop"></div>
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea rows="5" placeholder="Tell us about your project"></textarea>
 
-  <div class="modal-content glass">
-    <img id="modalImg">
+      <button type="submit">Send Message</button>
 
-    <button id="prev">‹</button>
-    <button id="next">›</button>
-    <button id="close">✕</button>
-  </div>
-</div>
+    </form>
 
-<script src="script.js"></script>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+
+    <div class="footer-content">
+
+      <h2>Royal Invite Studio</h2>
+
+      <p>
+        Premium Invitation & Website Design Studio
+      </p>
+
+      <div class="socials">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- JS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+
 </body>
 </html>
