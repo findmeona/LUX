@@ -1,398 +1,42 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+/* Floating Animation */
 
-html{
-  scroll-behavior:smooth;
-}
+@keyframes floating {
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:#070707;
-  color:#fff;
-  overflow-x:hidden;
-}
-
-/* Loader */
-
-.loader{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.ring{
-  width:80px;
-  height:80px;
-  border:6px solid rgba(255,255,255,0.1);
-  border-top:6px solid gold;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-  100%{
-    transform:rotate(360deg);
+  0%{
+    transform:translateY(0px);
   }
-}
 
-/* Navbar */
-
-header{
-  position:fixed;
-  width:100%;
-  top:0;
-  z-index:1000;
-  backdrop-filter:blur(10px);
-  background:rgba(0,0,0,0.4);
-}
-
-.navbar{
-  width:90%;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 0;
-}
-
-.logo{
-  font-size:2rem;
-  font-weight:700;
-  font-family:'Cinzel',serif;
-}
-
-.logo span{
-  color:gold;
-}
-
-.nav-links{
-  display:flex;
-  gap:35px;
-  list-style:none;
-}
-
-.nav-links a{
-  color:white;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-.nav-links a:hover{
-  color:gold;
-}
-
-.btn-nav{
-  padding:12px 24px;
-  background:gold;
-  color:black;
-  text-decoration:none;
-  border-radius:30px;
-  font-weight:600;
-}
-
-/* Hero */
-
-.hero{
-  height:100vh;
-  background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.65);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:800px;
-}
-
-.hero h1{
-  font-size:4.5rem;
-  line-height:1.1;
-  margin-bottom:20px;
-  font-family:'Cinzel',serif;
-}
-
-.hero p{
-  font-size:1.2rem;
-  color:#ddd;
-  margin-bottom:40px;
-}
-
-.hero-buttons{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-}
-
-.primary-btn,
-.secondary-btn{
-  padding:15px 35px;
-  text-decoration:none;
-  border-radius:50px;
-  font-weight:600;
-  transition:0.4s;
-}
-
-.primary-btn{
-  background:gold;
-  color:black;
-}
-
-.primary-btn:hover{
-  transform:translateY(-5px);
-}
-
-.secondary-btn{
-  border:1px solid white;
-  color:white;
-}
-
-.secondary-btn:hover{
-  background:white;
-  color:black;
-}
-
-.floating-card{
-  position:absolute;
-  width:200px;
-  height:200px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.2);
-  backdrop-filter:blur(10px);
-  border-radius:30px;
-  animation:float 5s ease-in-out infinite;
-}
-
-.card1{
-  top:20%;
-  left:8%;
-}
-
-.card2{
-  bottom:15%;
-  right:8%;
-  animation-delay:2s;
-}
-
-@keyframes float{
   50%{
-    transform:translateY(-25px);
-  }
-}
-
-/* Sections */
-
-section{
-  padding:120px 10%;
-}
-
-.section-title{
-  text-align:center;
-  margin-bottom:70px;
-}
-
-.section-title h2{
-  font-size:3rem;
-  margin-bottom:15px;
-  font-family:'Cinzel',serif;
-}
-
-.section-title p{
-  color:#bbb;
-}
-
-/* Services */
-
-.service-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-.service-box{
-  background:#111;
-  padding:45px;
-  border-radius:25px;
-  transition:0.4s;
-  border:1px solid rgba(255,255,255,0.08);
-}
-
-.service-box:hover{
-  transform:translateY(-12px);
-  border-color:gold;
-}
-
-.service-box i{
-  font-size:2.5rem;
-  color:gold;
-  margin-bottom:25px;
-}
-
-.service-box h3{
-  margin-bottom:15px;
-}
-
-/* Portfolio */
-
-.portfolio-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:30px;
-}
-
-.portfolio-card{
-  overflow:hidden;
-  border-radius:25px;
-  position:relative;
-}
-
-.portfolio-card img{
-  width:100%;
-  height:400px;
-  object-fit:cover;
-  transition:0.5s;
-}
-
-.portfolio-card:hover img{
-  transform:scale(1.1);
-}
-
-.portfolio-content{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:30px;
-  background:linear-gradient(transparent,rgba(0,0,0,0.9));
-}
-
-/* About */
-
-.about{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:center;
-}
-
-.about-image img{
-  width:100%;
-  border-radius:30px;
-}
-
-.about-content h2{
-  font-size:3rem;
-  margin-bottom:20px;
-  font-family:'Cinzel',serif;
-}
-
-.about-content p{
-  color:#ccc;
-  line-height:1.8;
-}
-
-.stats{
-  display:flex;
-  gap:30px;
-  margin-top:40px;
-}
-
-.stat-box{
-  background:#111;
-  padding:30px;
-  border-radius:20px;
-  text-align:center;
-}
-
-.stat-box h3{
-  color:gold;
-  font-size:2rem;
-}
-
-/* Contact */
-
-.contact-form{
-  max-width:700px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.contact-form input,
-.contact-form textarea{
-  padding:18px;
-  border:none;
-  border-radius:15px;
-  background:#111;
-  color:white;
-}
-
-.contact-form button{
-  padding:18px;
-  border:none;
-  background:gold;
-  color:black;
-  border-radius:15px;
-  font-size:1rem;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* Footer */
-
-footer{
-  background:#050505;
-  padding:60px 10%;
-  text-align:center;
-}
-
-.socials{
-  margin-top:20px;
-  display:flex;
-  justify-content:center;
-  gap:20px;
-}
-
-.socials i{
-  font-size:1.5rem;
-  color:gold;
-  cursor:pointer;
-}
-
-/* Responsive */
-
-@media(max-width:900px){
-
-  .hero h1{
-    font-size:3rem;
+    transform:translateY(-20px);
   }
 
-  .about{
-    grid-template-columns:1fr;
+  100%{
+    transform:translateY(0px);
   }
 
-  .nav-links{
-    display:none;
-  }
+}
 
-  .stats{
-    flex-direction:column;
-  }
+.floating{
+  animation:floating 4s ease-in-out infinite;
+}
 
+/* Fade Up */
+
+.fade-up{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.fade-up.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Glow Effect */
+
+.glow:hover{
+  box-shadow:
+  0 0 20px #00e0ff,
+  0 0 40px #00e0ff;
 }
