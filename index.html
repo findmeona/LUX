@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aethera® — Beyond Silence</title>
 
-  <!-- Fonts -->
+  <title>Aethera®</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -15,43 +16,196 @@
   <!-- Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root {
-      --background: #FFFFFF;
+      --background: #ffffff;
       --foreground: #000000;
-      --muted: #6F6F6F;
+      --muted: #6f6f6f;
     }
 
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     html,
     body {
-      margin: 0;
-      padding: 0;
-      background: var(--background);
+      width: 100%;
+      min-height: 100%;
       overflow-x: hidden;
+      background: var(--background);
       font-family: 'Inter', sans-serif;
       color: var(--foreground);
     }
 
     body {
-      min-height: 100vh;
+      position: relative;
     }
 
     .font-display {
       font-family: 'Instrument Serif', serif;
     }
 
-    .tracking-tight-custom {
-      letter-spacing: -2.46px;
+    .hero-container {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background: white;
     }
 
-    /* Fade Rise Animations */
+    /* VIDEO */
+    .hero-video {
+      position: absolute;
+      inset: auto 0 0 0;
+      top: 300px;
+      width: 100%;
+      height: calc(100vh - 300px);
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.08s linear;
+      pointer-events: none;
+      z-index: 0;
+      filter: contrast(1.02) saturate(0.96);
+    }
+
+    /* OVERLAY */
+    .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,1),
+          rgba(255,255,255,0),
+          rgba(255,255,255,1)
+        );
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: relative;
+      z-index: 10;
+    }
+
+    .navbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 30px;
+      color: #000000;
+      letter-spacing: -0.04em;
+    }
+
+    .logo sup {
+      font-size: 12px;
+      top: -0.7em;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #000000;
+    }
+
+    .nav-active {
+      color: #000000;
+    }
+
+    .nav-muted {
+      color: #6f6f6f;
+    }
+
+    /* BUTTONS */
+    .btn {
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+    }
+
+    .nav-btn {
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+
+    .hero-btn {
+      padding: 20px 56px;
+      font-size: 16px;
+      margin-top: 48px;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      z-index: 10;
+      padding-top: calc(8rem - 75px);
+      padding-bottom: 10rem;
+      padding-left: 24px;
+      padding-right: 24px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3rem, 9vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: -2.46px;
+      font-weight: 400;
+      max-width: 1400px;
+      color: #000000;
+    }
+
+    .hero-title em {
+      color: #6f6f6f;
+      font-style: italic;
+    }
+
+    .hero-desc {
+      margin-top: 32px;
+      max-width: 720px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #6f6f6f;
+    }
+
+    /* ANIMATIONS */
     @keyframes fadeRise {
       from {
         opacity: 0;
@@ -60,11 +214,12 @@
 
       to {
         opacity: 1;
-        transform: translateY(0px);
+        transform: translateY(0);
       }
     }
 
     .animate-fade-rise {
+      opacity: 0;
       animation: fadeRise 0.8s ease-out forwards;
     }
 
@@ -80,51 +235,37 @@
       animation-delay: 0.4s;
     }
 
-    .hero-video {
-      position: absolute;
-      inset: auto 0 0 0;
-      top: 300px;
-      width: 100%;
-      height: calc(100vh - 300px);
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.08s linear;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-      filter: contrast(1.05) saturate(0.95);
-    }
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
 
-    .glass-blur {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
+      .navbar-inner {
+        padding: 20px;
+      }
 
-    .btn-hover {
-      transition:
-        transform 0.3s ease,
-        background 0.3s ease;
-    }
+      .hero-desc {
+        font-size: 16px;
+      }
 
-    .btn-hover:hover {
-      transform: scale(1.03);
-    }
-
-    .menu-link {
-      transition: color 0.3s ease;
-    }
-
-    .menu-link:hover {
-      color: #000000;
+      .hero-video {
+        top: 260px;
+        height: calc(100vh - 260px);
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="relative min-h-screen w-full overflow-hidden bg-white">
+  <div class="hero-container">
 
-    <!-- Video Background -->
+    <!-- VIDEO BACKGROUND -->
+    <!-- 
+      IMPORTANT:
+      Replace "video.mp4" with your downloaded Pinterest video.
+    -->
     <video
       id="bgVideo"
       class="hero-video"
@@ -133,74 +274,59 @@
       playsinline
       preload="auto"
     >
-      <source
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4"
-        type="video/mp4"
-      />
+      <source src="video.mp4" type="video/mp4">
     </video>
 
-    <!-- Gradient Overlay -->
-    <div class="absolute inset-0 z-[1] bg-gradient-to-b from-white via-transparent to-white"></div>
+    <!-- GRADIENT OVERLAY -->
+    <div class="gradient-overlay"></div>
 
-    <!-- Navigation -->
-    <header class="relative z-10">
-      <nav class="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="navbar-inner">
 
-        <!-- Logo -->
-        <div class="font-display text-3xl text-black tracking-tight">
-          Aethera<sup class="text-sm align-super">®</sup>
+        <!-- LOGO -->
+        <div class="logo">
+          Aethera<sup>®</sup>
         </div>
 
-        <!-- Menu -->
-        <div class="hidden md:flex items-center gap-10 text-sm font-normal">
-          <a href="#" class="menu-link text-black">Home</a>
-          <a href="#" class="menu-link text-[#6F6F6F]">Studio</a>
-          <a href="#" class="menu-link text-[#6F6F6F]">About</a>
-          <a href="#" class="menu-link text-[#6F6F6F]">Journal</a>
-          <a href="#" class="menu-link text-[#6F6F6F]">Reach Us</a>
-        </div>
+        <!-- MENU -->
+        <nav class="nav-links">
+          <a href="#" class="nav-active">Home</a>
+          <a href="#" class="nav-muted">Studio</a>
+          <a href="#" class="nav-muted">About</a>
+          <a href="#" class="nav-muted">Journal</a>
+          <a href="#" class="nav-muted">Reach Us</a>
+        </nav>
 
-        <!-- CTA -->
-        <button
-          class="btn-hover rounded-full px-6 py-2.5 text-sm bg-black text-white shadow-lg"
-        >
+        <!-- NAV CTA -->
+        <button class="btn nav-btn">
           Begin Journey
         </button>
 
-      </nav>
+      </div>
     </header>
 
-    <!-- Hero Section -->
-    <section
-      class="relative z-10 flex flex-col items-center justify-center text-center px-6 pb-40"
-      style="padding-top: calc(8rem - 75px);"
-    >
+    <!-- HERO SECTION -->
+    <section class="hero">
 
-      <!-- Headline -->
-      <h1
-        class="font-display text-5xl sm:text-7xl md:text-8xl max-w-7xl font-normal leading-none tracking-tight-custom animate-fade-rise"
-        style="line-height: 0.95;"
-      >
+      <!-- TITLE -->
+      <h1 class="hero-title animate-fade-rise">
         Beyond
-        <span class="italic text-[#6F6F6F]">silence,</span>
-        <br />
+        <em>silence,</em>
+        <br>
         we build
-        <span class="italic text-[#6F6F6F]">the eternal.</span>
+        <em>the eternal.</em>
       </h1>
 
-      <!-- Description -->
-      <p
-        class="text-base sm:text-lg max-w-2xl mt-8 leading-relaxed text-[#6F6F6F] animate-fade-rise-delay"
-      >
+      <!-- DESCRIPTION -->
+      <p class="hero-desc animate-fade-rise-delay">
         Building platforms for brilliant minds, fearless makers,
         and thoughtful souls. Through the noise, we craft digital
         havens for deep work and pure flows.
       </p>
 
-      <!-- Hero CTA -->
-      <button
-        class="btn-hover rounded-full px-14 py-5 text-base mt-12 bg-black text-white shadow-2xl animate-fade-rise-delay-2"
-      >
+      <!-- HERO BUTTON -->
+      <button class="btn hero-btn animate-fade-rise-delay-2">
         Begin Journey
       </button>
 
@@ -215,9 +341,10 @@
 
     const FADE_DURATION = 0.5;
 
-    function animateVideoFade() {
+    function monitorVideoFade() {
+
       if (!video.duration) {
-        animationFrame = requestAnimationFrame(animateVideoFade);
+        animationFrame = requestAnimationFrame(monitorVideoFade);
         return;
       }
 
@@ -226,30 +353,32 @@
 
       let opacity = 1;
 
-      // Fade In
+      // FADE IN
       if (current < FADE_DURATION) {
         opacity = current / FADE_DURATION;
       }
 
-      // Fade Out
+      // FADE OUT
       else if (current > duration - FADE_DURATION) {
         opacity = (duration - current) / FADE_DURATION;
       }
 
       opacity = Math.max(0, Math.min(1, opacity));
 
-      video.style.opacity = opacity.toString();
+      video.style.opacity = opacity;
 
-      animationFrame = requestAnimationFrame(animateVideoFade);
+      animationFrame = requestAnimationFrame(monitorVideoFade);
     }
 
+    // START
     video.addEventListener('loadedmetadata', () => {
       video.play();
-      animateVideoFade();
+      monitorVideoFade();
     });
 
-    // Seamless manual loop
+    // MANUAL SMOOTH LOOP
     video.addEventListener('ended', async () => {
+
       video.style.opacity = '0';
 
       cancelAnimationFrame(animationFrame);
@@ -260,17 +389,22 @@
 
       try {
         await video.play();
-        animateVideoFade();
+        monitorVideoFade();
       } catch (err) {
         console.error(err);
       }
+
     });
 
-    // Autoplay fallback
+    // AUTOPLAY FALLBACK
     video.play().catch(() => {
-      document.addEventListener('click', () => {
-        video.play();
-      }, { once: true });
+      document.addEventListener(
+        'click',
+        () => {
+          video.play();
+        },
+        { once: true }
+      );
     });
   </script>
 
