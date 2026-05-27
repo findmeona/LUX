@@ -2,104 +2,277 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Luxury Creative Studio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aethera® — Beyond Silence</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Instrument Serif -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --background: #FFFFFF;
+      --foreground: #000000;
+      --muted: #6F6F6F;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      color: var(--foreground);
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .font-display {
+      font-family: 'Instrument Serif', serif;
+    }
+
+    .tracking-tight-custom {
+      letter-spacing: -2.46px;
+    }
+
+    /* Fade Rise Animations */
+    @keyframes fadeRise {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    .animate-fade-rise {
+      animation: fadeRise 0.8s ease-out forwards;
+    }
+
+    .animate-fade-rise-delay {
+      opacity: 0;
+      animation: fadeRise 0.8s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+
+    .animate-fade-rise-delay-2 {
+      opacity: 0;
+      animation: fadeRise 0.8s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: auto 0 0 0;
+      top: 300px;
+      width: 100%;
+      height: calc(100vh - 300px);
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.08s linear;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      filter: contrast(1.05) saturate(0.95);
+    }
+
+    .glass-blur {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .btn-hover {
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    }
+
+    .btn-hover:hover {
+      transform: scale(1.03);
+    }
+
+    .menu-link {
+      transition: color 0.3s ease;
+    }
+
+    .menu-link:hover {
+      color: #000000;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="navbar">
-  <div class="logo">LuxuryStudio</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <div class="relative min-h-screen w-full overflow-hidden bg-white">
 
-<!-- HERO -->
-<section id="home" class="hero">
+    <!-- Video Background -->
+    <video
+      id="bgVideo"
+      class="hero-video"
+      muted
+      autoplay
+      playsinline
+      preload="auto"
+    >
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4"
+        type="video/mp4"
+      />
+    </video>
 
-  <video autoplay muted loop class="bg-video">
-    <source src="https://cdn.coverr.co/videos/coverr-working-in-a-modern-office-1579/1080p.mp4" type="video/mp4">
-  </video>
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 z-[1] bg-gradient-to-b from-white via-transparent to-white"></div>
 
-  <div class="overlay"></div>
+    <!-- Navigation -->
+    <header class="relative z-10">
+      <nav class="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
 
-  <div class="hero-content">
-    <h1 class="glow">Premium Digital Experiences</h1>
-    <p>Websites • Wedding Invitations • Festive Cards</p>
+        <!-- Logo -->
+        <div class="font-display text-3xl text-black tracking-tight">
+          Aethera<sup class="text-sm align-super">®</sup>
+        </div>
 
-    <div class="hero-buttons">
-      <a href="#contact" class="btn">Get Started</a>
+        <!-- Menu -->
+        <div class="hidden md:flex items-center gap-10 text-sm font-normal">
+          <a href="#" class="menu-link text-black">Home</a>
+          <a href="#" class="menu-link text-[#6F6F6F]">Studio</a>
+          <a href="#" class="menu-link text-[#6F6F6F]">About</a>
+          <a href="#" class="menu-link text-[#6F6F6F]">Journal</a>
+          <a href="#" class="menu-link text-[#6F6F6F]">Reach Us</a>
+        </div>
 
-      <!-- WhatsApp CTA -->
-      <a class="btn whatsapp"
-         href="https://wa.me/919876543210?text=Hi%20I%20want%20a%20premium%20website%20/%20invitation%20design"
-         target="_blank">
-        Order on WhatsApp
-      </a>
-    </div>
+        <!-- CTA -->
+        <button
+          class="btn-hover rounded-full px-6 py-2.5 text-sm bg-black text-white shadow-lg"
+        >
+          Begin Journey
+        </button>
+
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      class="relative z-10 flex flex-col items-center justify-center text-center px-6 pb-40"
+      style="padding-top: calc(8rem - 75px);"
+    >
+
+      <!-- Headline -->
+      <h1
+        class="font-display text-5xl sm:text-7xl md:text-8xl max-w-7xl font-normal leading-none tracking-tight-custom animate-fade-rise"
+        style="line-height: 0.95;"
+      >
+        Beyond
+        <span class="italic text-[#6F6F6F]">silence,</span>
+        <br />
+        we build
+        <span class="italic text-[#6F6F6F]">the eternal.</span>
+      </h1>
+
+      <!-- Description -->
+      <p
+        class="text-base sm:text-lg max-w-2xl mt-8 leading-relaxed text-[#6F6F6F] animate-fade-rise-delay"
+      >
+        Building platforms for brilliant minds, fearless makers,
+        and thoughtful souls. Through the noise, we craft digital
+        havens for deep work and pure flows.
+      </p>
+
+      <!-- Hero CTA -->
+      <button
+        class="btn-hover rounded-full px-14 py-5 text-base mt-12 bg-black text-white shadow-2xl animate-fade-rise-delay-2"
+      >
+        Begin Journey
+      </button>
+
+    </section>
+
   </div>
-</section>
 
-<!-- SERVICES -->
-<section id="services" class="section">
-  <h2 class="title">Our Services</h2>
+  <script>
+    const video = document.getElementById('bgVideo');
 
-  <div class="grid">
-    <div class="card">
-      <h3>Website Design</h3>
-      <p>High converting luxury business websites.</p>
-    </div>
+    let animationFrame;
 
-    <div class="card">
-      <h3>Wedding Invitations</h3>
-      <p>Animated premium digital wedding cards.</p>
-    </div>
+    const FADE_DURATION = 0.5;
 
-    <div class="card">
-      <h3>Festive Cards</h3>
-      <p>Elegant Diwali, New Year & custom designs.</p>
-    </div>
-  </div>
-</section>
+    function animateVideoFade() {
+      if (!video.duration) {
+        animationFrame = requestAnimationFrame(animateVideoFade);
+        return;
+      }
 
-<section id="work" class="section dark">
-  <h2 class="title">Our Work</h2>
+      const current = video.currentTime;
+      const duration = video.duration;
 
-  <div class="work-grid">
-    <div class="work-item"></div>
-    <div class="work-item"></div>
-    <div class="work-item"></div>
-    <div class="work-item"></div>
-  </div>
-</section>
+      let opacity = 1;
 
-<section id="contact" class="section">
-  <h2 class="title">Contact Us</h2>
+      // Fade In
+      if (current < FADE_DURATION) {
+        opacity = current / FADE_DURATION;
+      }
 
-  <form class="contact-form">
-    <input type="text" placeholder="Your Name" required />
-    <input type="email" placeholder="Email Address" required />
-    <textarea placeholder="Your Message"></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+      // Fade Out
+      else if (current > duration - FADE_DURATION) {
+        opacity = (duration - current) / FADE_DURATION;
+      }
 
-<footer>
-  <p>© 2026 LuxuryStudio. All Rights Reserved.</p>
-</footer>
+      opacity = Math.max(0, Math.min(1, opacity));
 
-<!-- FLOATING WHATSAPP BUTTON -->
-<a href="https://wa.me/919876543210?text=Hi%20I%20am%20interested%20in%20your%20services"
-   class="float-whatsapp"
-   target="_blank">
-  💬
-</a>
+      video.style.opacity = opacity.toString();
 
-<script src="script.js"></script>
+      animationFrame = requestAnimationFrame(animateVideoFade);
+    }
+
+    video.addEventListener('loadedmetadata', () => {
+      video.play();
+      animateVideoFade();
+    });
+
+    // Seamless manual loop
+    video.addEventListener('ended', async () => {
+      video.style.opacity = '0';
+
+      cancelAnimationFrame(animationFrame);
+
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      video.currentTime = 0;
+
+      try {
+        await video.play();
+        animateVideoFade();
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    // Autoplay fallback
+    video.play().catch(() => {
+      document.addEventListener('click', () => {
+        video.play();
+      }, { once: true });
+    });
+  </script>
+
 </body>
 </html>
