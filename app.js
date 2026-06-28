@@ -328,3 +328,359 @@ document.addEventListener(
 "DOMContentLoaded",
 initApp
 );
+// =====================================
+// APP.JS PART 2
+// PRODUCT MASTER
+// =====================================
+
+function addProduct(){
+
+const product =
+document.getElementById(
+"productName"
+).value.trim();
+
+const packing =
+document.getElementById(
+"packingSize"
+).value.trim();
+
+const technical =
+document.getElementById(
+"technicalName"
+).value.trim();
+
+const price =
+Number(
+document.getElementById(
+"productPrice"
+).value
+);
+
+if(
+!product ||
+!packing ||
+!technical ||
+!price
+){
+alert(
+"Fill all product fields"
+);
+return;
+}
+
+const products =
+DB.getProducts();
+
+products.push({
+
+id: Date.now(),
+
+product,
+
+packing,
+
+technical,
+
+price
+
+});
+
+DB.saveProducts(products);
+
+document.getElementById(
+"productName"
+).value="";
+
+document.getElementById(
+"packingSize"
+).value="";
+
+document.getElementById(
+"technicalName"
+).value="";
+
+document.getElementById(
+"productPrice"
+).value="";
+
+loadProducts();
+
+updateDashboard();
+
+alert(
+"Product Added"
+);
+
+}
+
+// ----------------------------
+
+function loadProducts(){
+
+const products =
+DB.getProducts();
+
+const table =
+document.getElementById(
+"productTable"
+);
+
+if(!table) return;
+
+table.innerHTML="";
+
+products.forEach(item=>{
+
+table.innerHTML += `
+
+<tr><td>
+${item.product}
+</td><td>
+${item.packing}
+</td><td>
+₹${item.price}
+</td><td><button
+class="delete-btn"
+onclick="deleteProduct(${item.id})">
+
+Delete
+
+</button></td></tr>`;
+
+});
+
+loadProductDropdown();
+
+}
+
+// ----------------------------
+
+function deleteProduct(id){
+
+const ok =
+confirm(
+"Delete Product?"
+);
+
+if(!ok) return;
+
+let products =
+DB.getProducts();
+
+products =
+products.filter(
+p => p.id !== id
+);
+
+DB.saveProducts(
+products
+);
+
+loadProducts();
+
+updateDashboard();
+
+}
+
+// ----------------------------
+
+function searchProducts(){
+
+const keyword =
+document.getElementById(
+"productSearch"
+).value.toLowerCase();
+
+const products =
+DB.getProducts();
+
+const table =
+document.getElementById(
+"productTable"
+);
+
+table.innerHTML="";
+
+products
+.filter(p=>
+p.product
+.toLowerCase()
+.includes(keyword)
+)
+.forEach(item=>{
+
+table.innerHTML += `
+
+<tr><td>
+${item.product}
+</td><td>
+${item.packing}
+</td><td>
+₹${item.price}
+</td><td><button
+class="delete-btn"
+onclick="deleteProduct(${item.id})">
+
+Delete
+
+</button></td></tr>`;
+
+});
+
+}
+
+// ----------------------------
+// BILLING PRODUCT DROPDOWN
+// ----------------------------
+
+function loadProductDropdown(){
+
+const dropdown =
+document.getElementById(
+"billProduct"
+);
+
+if(!dropdown) return;
+
+const products =
+DB.getProducts();
+
+const uniqueProducts =
+[
+...new Set(
+products.map(
+p=>p.product
+)
+)
+];
+
+dropdown.innerHTML="";
+
+uniqueProducts.forEach(name=>{
+
+dropdown.innerHTML +=
+
+`<option value="${name}">
+${name}
+
+</option>`;});
+
+loadPackingDropdown();
+
+}
+
+// ----------------------------
+
+function loadPackingDropdown(){
+
+const product =
+document.getElementById(
+"billProduct"
+).value;
+
+const packingDropdown =
+document.getElementById(
+"billPacking"
+);
+
+const products =
+DB.getProducts();
+
+const filtered =
+products.filter(
+p => p.product === product
+);
+
+packingDropdown.innerHTML="";
+
+filtered.forEach(item=>{
+
+packingDropdown.innerHTML +=
+
+`<option value="${item.packing}">
+${item.packing}
+
+</option>`;});
+
+fillProductDetails();
+
+}
+
+// ----------------------------
+
+function fillProductDetails(){
+
+const product =
+document.getElementById(
+"billProduct"
+).value;
+
+const packing =
+document.getElementById(
+"billPacking"
+).value;
+
+const products =
+DB.getProducts();
+
+const item =
+products.find(
+p =>
+p.product===product &&
+p.packing===packing
+);
+
+if(!item) return;
+
+document.getElementById(
+"billTechnical"
+).value =
+item.technical;
+
+document.getElementById(
+"billPrice"
+).value =
+item.price;
+
+}
+
+// ----------------------------
+// EVENTS
+// ----------------------------
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+loadProducts();
+
+const billProduct =
+document.getElementById(
+"billProduct"
+);
+
+const billPacking =
+document.getElementById(
+"billPacking"
+);
+
+if(billProduct){
+
+billProduct.addEventListener(
+"change",
+loadPackingDropdown
+);
+
+}
+
+if(billPacking){
+
+billPacking.addEventListener(
+"change",
+fillProductDetails
+);
+
+}
+
+});
