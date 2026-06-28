@@ -1,412 +1,356 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Aethera®</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Instrument Serif -->
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-  <!-- Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    :root {
-      --background: #ffffff;
-      --foreground: #000000;
-      --muted: #6f6f6f;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      overflow-x: hidden;
-      background: var(--background);
-      font-family: 'Inter', sans-serif;
-      color: var(--foreground);
-    }
-
-    body {
-      position: relative;
-    }
-
-    .font-display {
-      font-family: 'Instrument Serif', serif;
-    }
-
-    .hero-container {
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
-      overflow: hidden;
-      background: white;
-    }
-
-    /* VIDEO */
-    .hero-video {
-      position: absolute;
-      inset: auto 0 0 0;
-      top: 300px;
-      width: 100%;
-      height: calc(100vh - 300px);
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.08s linear;
-      pointer-events: none;
-      z-index: 0;
-      filter: contrast(1.02) saturate(0.96);
-    }
-
-    /* OVERLAY */
-    .gradient-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,1),
-          rgba(255,255,255,0),
-          rgba(255,255,255,1)
-        );
-    }
-
-    /* NAVBAR */
-    .navbar {
-      position: relative;
-      z-index: 10;
-    }
-
-    .navbar-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 24px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-family: 'Instrument Serif', serif;
-      font-size: 30px;
-      color: #000000;
-      letter-spacing: -0.04em;
-    }
-
-    .logo sup {
-      font-size: 12px;
-      top: -0.7em;
-      position: relative;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      font-size: 14px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: #000000;
-    }
-
-    .nav-active {
-      color: #000000;
-    }
-
-    .nav-muted {
-      color: #6f6f6f;
-    }
-
-    /* BUTTONS */
-    .btn {
-      background: #000000;
-      color: #ffffff;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      transition:
-        transform 0.3s ease,
-        opacity 0.3s ease;
-    }
-
-    .btn:hover {
-      transform: scale(1.03);
-    }
-
-    .nav-btn {
-      padding: 12px 24px;
-      font-size: 14px;
-    }
-
-    .hero-btn {
-      padding: 20px 56px;
-      font-size: 16px;
-      margin-top: 48px;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      z-index: 10;
-      padding-top: calc(8rem - 75px);
-      padding-bottom: 10rem;
-      padding-left: 24px;
-      padding-right: 24px;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-title {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(3rem, 9vw, 8rem);
-      line-height: 0.95;
-      letter-spacing: -2.46px;
-      font-weight: 400;
-      max-width: 1400px;
-      color: #000000;
-    }
-
-    .hero-title em {
-      color: #6f6f6f;
-      font-style: italic;
-    }
-
-    .hero-desc {
-      margin-top: 32px;
-      max-width: 720px;
-      font-size: 18px;
-      line-height: 1.8;
-      color: #6f6f6f;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeRise {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-rise {
-      opacity: 0;
-      animation: fadeRise 0.8s ease-out forwards;
-    }
-
-    .animate-fade-rise-delay {
-      opacity: 0;
-      animation: fadeRise 0.8s ease-out forwards;
-      animation-delay: 0.2s;
-    }
-
-    .animate-fade-rise-delay-2 {
-      opacity: 0;
-      animation: fadeRise 0.8s ease-out forwards;
-      animation-delay: 0.4s;
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-
-      .navbar-inner {
-        padding: 20px;
-      }
-
-      .hero-desc {
-        font-size: 16px;
-      }
-
-      .hero-video {
-        top: 260px;
-        height: calc(100vh - 260px);
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="hero-container">
-
-    <!-- VIDEO BACKGROUND -->
-    <!-- 
-      IMPORTANT:
-      Replace "video.mp4" with your downloaded Pinterest video.
-    -->
-    <video
-      id="bgVideo"
-      class="hero-video"
-      muted
-      autoplay
-      playsinline
-      preload="auto"
-    >
-      <source src="video.mp4" type="video/mp4">
-    </video>
-
-    <!-- GRADIENT OVERLAY -->
-    <div class="gradient-overlay"></div>
-
-    <!-- NAVBAR -->
-    <header class="navbar">
-      <div class="navbar-inner">
-
-        <!-- LOGO -->
-        <div class="logo">
-          Aethera<sup>®</sup>
-        </div>
-
-        <!-- MENU -->
-        <nav class="nav-links">
-          <a href="#" class="nav-active">Home</a>
-          <a href="#" class="nav-muted">Studio</a>
-          <a href="#" class="nav-muted">About</a>
-          <a href="#" class="nav-muted">Journal</a>
-          <a href="#" class="nav-muted">Reach Us</a>
-        </nav>
-
-        <!-- NAV CTA -->
-        <button class="btn nav-btn">
-          Begin Journey
-        </button>
-
-      </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-
-      <!-- TITLE -->
-      <h1 class="hero-title animate-fade-rise">
-        Beyond
-        <em>silence,</em>
-        <br>
-        we build
-        <em>the eternal.</em>
-      </h1>
-
-      <!-- DESCRIPTION -->
-      <p class="hero-desc animate-fade-rise-delay">
-        Building platforms for brilliant minds, fearless makers,
-        and thoughtful souls. Through the noise, we craft digital
-        havens for deep work and pure flows.
-      </p>
-
-      <!-- HERO BUTTON -->
-      <button class="btn hero-btn animate-fade-rise-delay-2">
-        Begin Journey
-      </button>
-
-    </section>
-
-  </div>
-
-  <script>
-    const video = document.getElementById('bgVideo');
-
-    let animationFrame;
-
-    const FADE_DURATION = 0.5;
-
-    function monitorVideoFade() {
-
-      if (!video.duration) {
-        animationFrame = requestAnimationFrame(monitorVideoFade);
-        return;
-      }
-
-      const current = video.currentTime;
-      const duration = video.duration;
-
-      let opacity = 1;
-
-      // FADE IN
-      if (current < FADE_DURATION) {
-        opacity = current / FADE_DURATION;
-      }
-
-      // FADE OUT
-      else if (current > duration - FADE_DURATION) {
-        opacity = (duration - current) / FADE_DURATION;
-      }
-
-      opacity = Math.max(0, Math.min(1, opacity));
-
-      video.style.opacity = opacity;
-
-      animationFrame = requestAnimationFrame(monitorVideoFade);
-    }
-
-    // START
-    video.addEventListener('loadedmetadata', () => {
-      video.play();
-      monitorVideoFade();
-    });
-
-    // MANUAL SMOOTH LOOP
-    video.addEventListener('ended', async () => {
-
-      video.style.opacity = '0';
-
-      cancelAnimationFrame(animationFrame);
-
-      await new Promise(resolve => setTimeout(resolve, 100));
-
-      video.currentTime = 0;
-
-      try {
-        await video.play();
-        monitorVideoFade();
-      } catch (err) {
-        console.error(err);
-      }
-
-    });
-
-    // AUTOPLAY FALLBACK
-    video.play().catch(() => {
-      document.addEventListener(
-        'click',
-        () => {
-          video.play();
-        },
-        { once: true }
-      );
-    });
-  </script>
-
-</body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agro Billing App</title><style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7f5;
+margin:0;
+padding:15px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+}
+
+.card{
+background:#fff;
+padding:15px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+margin-bottom:15px;
+}
+
+h1{
+text-align:center;
+color:#2E7D32;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:12px;
+border:1px solid #ccc;
+border-radius:8px;
+box-sizing:border-box;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2E7D32;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+margin-top:8px;
+}
+
+button:hover{
+opacity:.9;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+text-align:center;
+font-size:14px;
+}
+
+.total{
+font-size:24px;
+font-weight:bold;
+color:#2E7D32;
+text-align:center;
+margin-top:15px;
+}
+
+.history-item{
+padding:10px;
+border-bottom:1px solid #ddd;
+}
+</style></head>
+<body><div class="container"><h1>🌱 Agro Billing App</h1><div class="card"><label>Customer Name</label>
+<input id="customer" placeholder="Enter customer name">
+
+<label>Product</label>
+<select id="product"></select>
+
+<label>Packing Size</label>
+<select id="packing"></select>
+
+<label>Technical Name</label>
+<input id="technical" readonly>
+
+<label>Price</label>
+<input id="price" readonly>
+
+<label>Quantity</label>
+<input id="qty" type="number">
+
+<button onclick="addItem()">Add Product</button>
+
+</div><div class="card"><h3>Bill Items</h3><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Product</th>
+<th>Qty</th>
+<th>Price</th>
+<th>Amount</th>
+</tr>
+</thead><tbody id="billBody"></tbody></table><div class="total">
+Grand Total: ₹<span id="grandTotal">0</span>
+</div><button onclick="saveBill()">Save Bill</button>
+
+</div><div class="card"><h3>Bill History</h3><div id="history"></div></div></div><script>
+
+const products = [
+
+{
+product:"Urea",
+packing:"50kg",
+technical:"Carbamide",
+price:266
+},
+
+{
+product:"Urea",
+packing:"25kg",
+technical:"Carbamide",
+price:140
+},
+
+{
+product:"DAP",
+packing:"50kg",
+technical:"Diammonium Phosphate",
+price:1350
+},
+
+{
+product:"NPK 20:20:0",
+packing:"50kg",
+technical:"Nitrogen Phosphorus Potassium",
+price:1250
+}
+
+];
+
+let billItems=[];
+
+const productSelect=document.getElementById("product");
+const packingSelect=document.getElementById("packing");
+
+function loadProducts(){
+
+const names=[
+...new Set(products.map(p=>p.product))
+];
+
+productSelect.innerHTML="";
+
+names.forEach(name=>{
+
+const option=document.createElement("option");
+option.value=name;
+option.textContent=name;
+
+productSelect.appendChild(option);
+
+});
+
+loadPacking();
+}
+
+function loadPacking(){
+
+const selected=productSelect.value;
+
+const filtered=
+products.filter(
+p=>p.product===selected
+);
+
+packingSelect.innerHTML="";
+
+filtered.forEach(item=>{
+
+const option=document.createElement("option");
+
+option.value=item.packing;
+option.textContent=item.packing;
+
+packingSelect.appendChild(option);
+
+});
+
+fillDetails();
+}
+
+function fillDetails(){
+
+const product=productSelect.value;
+const packing=packingSelect.value;
+
+const item=
+products.find(
+p=>p.product===product &&
+p.packing===packing
+);
+
+if(item){
+
+document.getElementById("technical").value=item.technical;
+document.getElementById("price").value=item.price;
+
+}
+}
+
+productSelect.addEventListener("change",loadPacking);
+packingSelect.addEventListener("change",fillDetails);
+
+function addItem(){
+
+const product=productSelect.value;
+const packing=packingSelect.value;
+const technical=document.getElementById("technical").value;
+const price=Number(document.getElementById("price").value);
+const qty=Number(document.getElementById("qty").value);
+
+if(!qty){
+alert("Enter Quantity");
+return;
+}
+
+const amount=qty*price;
+
+billItems.push({
+product,
+packing,
+technical,
+qty,
+price,
+amount
+});
+
+renderBill();
+
+document.getElementById("qty").value="";
+}
+
+function renderBill(){
+
+const body=document.getElementById("billBody");
+
+body.innerHTML="";
+
+let total=0;
+
+billItems.forEach((item,index)=>{
+
+total+=item.amount;
+
+body.innerHTML+=`
+<tr>
+<td>${index+1}</td>
+<td>${item.product}</td>
+<td>${item.qty}</td>
+<td>${item.price}</td>
+<td>${item.amount}</td>
+</tr>
+`;
+
+});
+
+document.getElementById("grandTotal").textContent=total;
+}
+
+function saveBill(){
+
+const customer=
+document.getElementById("customer").value;
+
+if(customer===""){
+alert("Enter customer name");
+return;
+}
+
+if(billItems.length===0){
+alert("Add product first");
+return;
+}
+
+const bill={
+
+invoice:
+"AGR-"+Date.now(),
+
+customer,
+
+total:
+document.getElementById("grandTotal").textContent
+
+};
+
+const history=
+JSON.parse(
+localStorage.getItem("agroBills") || "[]"
+);
+
+history.push(bill);
+
+localStorage.setItem(
+"agroBills",
+JSON.stringify(history)
+);
+
+alert("Bill Saved");
+
+billItems=[];
+
+renderBill();
+
+loadHistory();
+}
+
+function loadHistory(){
+
+const history=
+JSON.parse(
+localStorage.getItem("agroBills") || "[]"
+);
+
+const box=
+document.getElementById("history");
+
+box.innerHTML="";
+
+history.reverse().forEach(bill=>{
+
+box.innerHTML+=`
+<div class="history-item">
+<b>${bill.invoice}</b><br>
+${bill.customer}<br>
+₹${bill.total}
+</div>
+`;
+
+});
+}
+
+loadProducts();
+loadHistory();
+
+</script></body>
 </html>
