@@ -1,102 +1,84 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agro Billing App V4</title>
-<link rel="stylesheet" href="style.css">
-</head><body><div class="container"><header class="header">
-<h1>🌱 Agro Billing App</h1>
-</header><!-- DASHBOARD --><section class="card">
-<h2>Dashboard</h2><div class="dashboard"><div class="dash-card">
-<h3 id="totalBills">0</h3>
-<p>Total Bills</p>
-</div><div class="dash-card">
-<h3 id="totalCustomers">0</h3>
-<p>Customers</p>
-</div><div class="dash-card">
-<h3 id="totalProducts">0</h3>
-<p>Products</p>
-</div><div class="dash-card">
-<h3 id="totalSales">₹0</h3>
-<p>Total Sales</p>
-</div></div>
-</section><!-- COMPANY SETTINGS --><section class="card"><h2>Company Settings</h2><input id="companyName" placeholder="Company Name"><input id="companyAddress" placeholder="Address"><input id="companyMobile" placeholder="Mobile Number"><input id="companyGST" placeholder="GST Number"><input id="companyEmail" placeholder="Email"><button onclick="saveCompany()">
-Save Company
-</button></section><!-- PRODUCT MASTER --><section class="card"><h2>Product Master</h2><input id="productName" placeholder="Product Name"><input id="packingSize" placeholder="Packing Size"><input id="technicalName" placeholder="Technical Name"><input id="productPrice" type="number" placeholder="Price"><button onclick="addProduct()">
-Add Product
-</button><input id="productSearch"
-placeholder="Search Product"
-onkeyup="searchProducts()">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craftora</title>
 
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Packing</th>
-<th>Price</th>
-<th>Delete</th>
-</tr>
-</thead><tbody id="productTable"></tbody></table></section><!-- CUSTOMER MASTER --><section class="card"><h2>Customer Master</h2><input id="customerName"
-placeholder="Party Name">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-<input id="customerLocation"
-placeholder="Location">
+<header class="header">
+    <div class="container nav">
+        <h1 class="logo">Craftora</h1>
 
-<input id="customerMobile"
-placeholder="Mobile Number">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Collections</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
 
-<button onclick="addCustomer()">
-Add Customer
-</button><table><thead>
-<tr>
-<th>Name</th>
-<th>Location</th>
-<th>Delete</th>
-</tr>
-</thead><tbody id="customerTable"></tbody></table></section><!-- BILLING --><section class="card"><h2>Create Bill</h2><label>Customer</label>
+        <button class="btn">Shop Now</button>
+    </div>
+</header>
 
-<select id="billCustomer"></select>
+<section class="hero">
+    <div class="container hero-content">
+        <div>
+            <h2>Beautiful Handmade Products</h2>
 
-<label>Product</label>
+            <p>
+                Discover unique handcrafted items made with passion.
+                Shop premium quality creations for every occasion.
+            </p>
 
-<select id="billProduct"></select>
+            <button class="btn">Explore Collection</button>
+        </div>
 
-<label>Packing</label>
+        <img
+        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700"
+        alt="">
+    </div>
+</section>
 
-<select id="billPacking"></select>
+<section class="products container">
 
-<label>Technical Name</label>
+    <h2>Featured Collection</h2>
 
-<input id="billTechnical" readonly><label>Price</label>
+    <div class="grid">
 
-<input id="billPrice" readonly><label>Quantity</label>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600" alt="">
+            <h3>Handmade Basket</h3>
+            <p>$39</p>
+        </div>
 
-<input id="billQty" type="number"><button onclick="addBillItem()">
-Add Item
-</button><table><thead>
-<tr>
-<th>#</th>
-<th>Product</th>
-<th>Qty</th>
-<th>Price</th>
-<th>Amount</th>
-<th>X</th>
-</tr>
-</thead><tbody id="billItems"></tbody></table><div class="grand-total">
-Grand Total ₹
-<span id="grandTotal">0</span>
-</div><button onclick="saveBill()">
-Save Bill
-</button><button onclick="shareWhatsApp()">
-WhatsApp Share
-</button></section><!-- BILL HISTORY --><section class="card"><h2>Bill History</h2><input id="historySearch"
-placeholder="Search Invoice">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=600" alt="">
+            <h3>Ceramic Vase</h3>
+            <p>$55</p>
+        </div>
 
-<div id="historyContainer"></div></section><!-- BACKUP --><section class="card"><h2>Backup</h2><button onclick="exportBackup()">
-Export Backup
-</button><input type="file"
-id="importFile">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600" alt="">
+            <h3>Decor Set</h3>
+            <p>$68</p>
+        </div>
 
-<button onclick="importBackup()">
-Import Backup
-</button></section></div><script src="app.js"></script></body>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Craftora. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
 </html>
