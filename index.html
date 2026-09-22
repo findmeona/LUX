@@ -1,84 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Craftora</title>
-
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AgriSales Manager</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="app">
 
-<header class="header">
-    <div class="container nav">
-        <h1 class="logo">Craftora</h1>
-
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Collections</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-
-        <button class="btn">Shop Now</button>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">🌾</div>
+      <div class="brand-text">
+        <div class="name" id="companyNameTop">AgriSales Manager</div>
+        <div class="sub" id="topbarSub">Dashboard</div>
+      </div>
     </div>
-</header>
-
-<section class="hero">
-    <div class="container hero-content">
-        <div>
-            <h2>Beautiful Handmade Products</h2>
-
-            <p>
-                Discover unique handcrafted items made with passion.
-                Shop premium quality creations for every occasion.
-            </p>
-
-            <button class="btn">Explore Collection</button>
-        </div>
-
-        <img
-        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700"
-        alt="">
+    <div class="topbar-actions">
+      <button class="icon-btn" id="backupBtn" title="Backup">☁️</button>
     </div>
-</section>
+  </div>
 
-<section class="products container">
-
-    <h2>Featured Collection</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600" alt="">
-            <h3>Handmade Basket</h3>
-            <p>$39</p>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=600" alt="">
-            <h3>Ceramic Vase</h3>
-            <p>$55</p>
-        </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=600" alt="">
-            <h3>Decor Set</h3>
-            <p>$68</p>
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-    <p>© 2026 Craftora. All Rights Reserved.</p>
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+  <div class="shell">
+    <div class="sidebar">
+      <button class="side-link" data-page="dashboard"><span class="ic">📊</span>Dashboard</button>
+      <button class="side-link" data-page="sales"><span class="ic">🧾</span>Sales</button>
+      <button class="side-link" data-page="orders"><span class="ic">📦</span>Orders</button>
+      <button class="side-link" data-page="inventory"><span class="ic">🏷️</span>Inventory</button>
+      <div class="side-section">MANAGE</div>
