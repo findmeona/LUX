@@ -4,29 +4,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AgriSales Manager</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BE%3C/text%3E%3C/svg%3E">
 <style>
-:root{
-  --green-900:#173626; --green-700:#1F4D36; --green-600:#276245; --green-500:#2F7A56;
-  --green-100:#E4EEE7; --amber-600:#B9812E; --amber-100:#F5E9D6; --paper:#FAF9F4;
-  --card:#FFFFFF; --ink-900:#20241F; --ink-600:#565F58; --ink-400:#8C948B; --line:#E4E1D6;
-  --red-600:#B23A32; --red-100:#F6E2DF; --blue-600:#2B6CB0; --blue-100:#E3EDF7;
-  --radius-lg:18px; --radius-md:12px; --radius-sm:8px;
-  --shadow-1: 0 1px 2px rgba(23,54,38,0.06), 0 1px 1px rgba(23,54,38,0.04);
-  --safe-top: env(safe-area-inset-top, 0px); --safe-bottom: env(safe-area-inset-bottom, 0px);
+:root{--g7:#1F4D36;--g5:#2F7A56;--g1:#E4EEE7;--amber:#B9812E;--paper:#FAF9F4;--card:#fff;--ink:#20241F;--ink2:#565F58;--line:#E4E1D6;--red:#B23A32;--red1:#F6E2DF;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--g1:#1d3327;--paper:#141814;--card:#1c211c;--ink:#ECEFE9;--ink2:#A6AEA5;--line:#2c332c;--red1:#3a1f1c;--g5:#4fae83}}
+:root[data-theme="dark"]{--g1:#1d3327;--paper:#141814;--card:#1c211c;--ink:#ECEFE9;--ink2:#A6AEA5;--line:#2c332c;--red1:#3a1f1c;--g5:#4fae83}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--g7);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px;z-index:5}
+.mark{width:32px;height:32px;border-radius:9px;background:var(--amber);display:grid;place-items:center;font-size:18px}
+header h1{font-size:18px;margin:0}
+main{max-width:640px;margin:0 auto;padding:16px 16px 96px}
+h2{font-size:17px;margin:20px 0 10px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.stat b{display:block;font-size:22px;margin-top:2px}
+.stat span{color:var(--ink2);font-size:13px}
+.stat.warn b{color:var(--red)}
+.row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.row small{color:var(--ink2);display:block}
+.badge{font-size:12px;padding:3px 9px;border-radius:99px;border:0;cursor:pointer;background:var(--g1);color:var(--g7)}
+.badge.due{background:var(--red1);color:var(--red)}
+.form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px}
+label{display:grid;gap:4px;font-size:13px;color:var(--ink2)}
+input,select{padding:11px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);width:100%}
+.chk{display:flex;align-items:center;gap:8px;color:var(--ink)}
+.chk input{width:auto}
+.btn{background:var(--g7);color:#fff;border:0;border-radius:10px;padding:12px;font-weight:600;cursor:pointer}
+.x{background:none;border:0;color:var(--ink2);font-size:18px;cursor:pointer;padding:4px 8px}
+.empty{color:var(--ink2);padding:18px;text-align:center}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;border:0;padding:12px 4px;color:var(--ink2);font-size:13px;cursor:pointer}
+nav button.on{color:var(--g5);font-weight:700;box-shadow:inset 0 3px 0 var(--g5)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+</style>
+</head>
+<body>
+<header><div class="mark">🌾</div><h1>AgriSales Manager</h1></header>
+<main id="view"></main>
+<nav id="nav"></nav>
+<script>
+const KEY='agrisales_v1';
+const seed={products:[{id:1,name:'Maize seed',unit:'kg',price:4.5},{id:2,name:'NPK fertilizer',unit:'50kg bag',price:38},{id:3,name:'Herbicide',unit:'litre',price:12}],
+customers:[{id:1,name:'Green Valley Farm',phone:''},{id:2,name:'Amina Yusuf',phone:''}],
+sales:[{id:1,date:new Date().toISOString().slice(0,10),cid:1,pid:2,qty:10,paid:true},{id:2,date:new Date().toISOString().slice(0,10),cid:2,pid:1,qty:25,paid:false}]};
+let db;
+try{db=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!db||!db.sales)db=JSON.parse(JSON.stringify(seed));
+function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}}
+const $=id=>document.getElementById(id);
+const money=n=>'$'+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+const nid=a=>a.reduce((m,x)=>Math.max(m,x.id),0)+1;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const P=id=>db.products.find(p=>p.id===id)||{name:'(deleted)',price:0,unit:''};
+const C=id=>db.customers.find(c=>c.id===id)||{name:'(deleted)'};
+const total=s=>P(s.pid).price*s.qty;
+let tab='overview';
+const tabs=[['overview','Overview'],['sales','Sales'],['customers','Customers'],['products','Products']];
+function go(t){tab=t;render()}
+function saleRow(s){return `<div class="row"><div><b>${esc(C(s.cid).name)}</b><small>${s.qty} × ${esc(P(s.pid).name)} · ${s.date}</small></div>
+<div style="text-align:right"><b>${money(total(s))}</b><br><button class="badge ${s.paid?'':'due'}" onclick="togglePaid(${s.id})">${s.paid?'Paid':'Unpaid'}</button></div></div>`}
+function render(){
+$('nav').innerHTML=tabs.map(([k,l])=>`<button class="${k===tab?'on':''}" onclick="go('${k}')">${l}</button>`).join('');
+const v=$('view');
+if(tab==='overview'){
+ const all=db.sales.reduce((a,s)=>a+total(s),0),due=db.sales.filter(s=>!s.paid).reduce((a,s)=>a+total(s),0);
+ const m=new Date().toISOString().slice(0,7),month=db.sales.filter(s=>s.date.startsWith(m)).reduce((a,s)=>a+total(s),0);
+ const by={};db.sales.forEach(s=>by[s.pid]=(by[s.pid]||0)+total(s));
+ const top=Object.entries(by).sort((a,b)=>b[1]-a[1])[0];
+ v.innerHTML=`<div class="stats"><div class="stat"><span>Total sales</span><b>${money(all)}</b></div>
+ <div class="stat warn"><span>Unpaid</span><b>${money(due)}</b></div>
+ <div class="stat"><span>This month</span><b>${money(month)}</b></div>
+ <div class="stat"><span>Best seller</span><b style="font-size:17px">${top?esc(P(+top[0]).name):'—'}</b></div></div>
+ <h2>Recent sales</h2>${db.sales.length?[...db.sales].reverse().slice(0,5).map(saleRow).join(''):'<div class="empty">No sales yet. Record your first sale in the Sales tab.</div>'}`;
 }
-*{box-sizing:border-box;}
-html,body{height:100%;margin:0;background:var(--paper);color:var(--ink-900);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  -webkit-tap-highlight-color:transparent;}
-html{scroll-padding-top:var(--safe-top);}
-h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-0.01em;}
-p{margin:0;}
-button,input,select,textarea{font-family:inherit;font-size:14px;}
-a{color:inherit;}
-#app{min-height:100%;display:flex;flex-direction:column;padding-top:var(--safe-top);}
-
-.topbar{position:sticky;top:var(--safe-top);z-index:20;background:var(--green-700);color:#fff;
-  padding:14px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow-1);}
-.topbar .brand{display:flex;align-items:center;gap:10px;}
-.brand-mark{width:34px;height:34px;border-radius:9px;background:var(--amber-600);
+if(tab==='sales'){
+ const ok=db.products.length&&db.customers.length;
+ v.innerHTML=(ok?`<form class="form" onsubmit="addSale(event)"><label>Customer<select id="sc">${db.customers.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></label>
+ <label>Product<select id="sp">${db.products.map(p=>`<option value="${p.id}">${esc(p.name)} — ${money(p.price)}/${esc(p.unit)}</option>`).join('')}</select></label>
+ <label>Quantity<input id="sq" type="number" min="0.01" step="any" value="1" required></label>
+ <label class="chk"><input id="spd" type="checkbox" checked> Paid in full</label><button class="btn">Save sale</button></form>`:'<div class="empty">Add at least one customer and one product first.</div>')+
+ `<h2>All sales</h2>`+(db.sales.length?[...db.sales].reverse().map(s=>`<div style="position:relative">${saleRow(s)}</div>`).join(''):'<div class="empty">No sales recorded yet.</div>');
+}
+if(tab==='customers'){
+ v.innerHTML=`<form class="form" onsubmit="addCust(event)"><label>Customer name<input id="cn" required></label><label>Phone<input id="cp" type="tel"></label><button class="btn">Add customer</button></form><h2>Customers</h2>`+
+ (db.customers.length?db.customers.map(c=>{const owed=db.sales.filter(s=>s.cid===c.id&&!s.paid).reduce((a,s)=>a+total(s),0);
+ return `<div class="row"><div><b>${esc(c.name)}</b><small>${esc(c.phone||'No phone')}</small></div><div style="text-align:right">${owed?`<span class="badge due">Owes ${money(owed)}</span>`:'<span class="badge">Settled</span>'}<button class="x" onclick="del('customers',${c.id})" aria-label="Delete">×</button></div></div>`}).join(''):'<div class="empty">No customers yet.</div>');
+}
+if(tab==='products'){
+ v.innerHTML=`<form class="form" onsubmit="addProd(event)"><label>Product name<input id="pn" required></label><label>Unit (kg, bag, litre)<input id="pu" required></label><label>Price per unit<input id="pr" type="number" min="0" step="any" required></label><button class="btn">Add product</button></form><h2>Products</h2>`+
+ (db.products.length?db.products.map(p=>`<div class="row"><div><b>${esc(p.name)}</b><small>${money(p.price)} per ${esc(p.unit)}</small></div><button class="x" onclick="del('products',${p.id})" aria-label="Delete">×</button></div>`).join(''):'<div class="empty">No products yet.</div>');
+}}
+function addSale(e){e.preventDefault();db.sales.push({id:nid(db.sales),date:new Date().toISOString().slice(0,10),cid:+$('sc').value,pid:+$('sp').value,qty:+$('sq').value,paid:$('spd').checked});save();render()}
+function addCust(e){e.preventDefault();db.customers.push({id:nid(db.customers),name:$('cn').value.trim(),phone:$('cp').value.trim()});save();render()}
+function addProd(e){e.preventDefault();db.products.push({id:nid(db.products),name:$('pn').value.trim(),unit:$('pu').value.trim(),price:+$('pr').value});save();render()}
+function togglePaid(id){const s=db.sales.find(x=>x.id===id);s.paid=!s.paid;save();render()}
+function del(k,id){if(confirm('Delete this item? Existing sales will show it as deleted.')){db[k]=db[k].filter(x=>x.id!==id);save();render()}}
+render();
+</script>
+</body>
+</html>
